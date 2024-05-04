@@ -73,7 +73,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>水仙教通灵模拟器</h1>
+    <h1>水仙教通灵</h1>
     <div class="asset">资产: <span id="asset">1000</span></div>
     <button id="tonglingBtn">通灵</button>
     <button id="resetBtn">复位</button>
@@ -85,7 +85,7 @@
     <div id="bountyInfo"></div>
   </div>
   
-  <div class="overlay" id="overlay">欧皇降临!</div>
+  <div class="overlay" id="overlay">三速欧皇降临!</div>
 
   <script>
     const resultElement = document.getElementById('result');
@@ -95,7 +95,7 @@
     const bountyInfoElement = document.getElementById('bountyInfo');
     const overlayElement = document.getElementById('overlay');
 
-    let asset = 1000;
+    let asset = 2000;
     let tonglingCount = 0;
     let currentBounty = null;
     let isEuropeKing = false;
@@ -149,14 +149,14 @@
           sum += parseInt(result.match(/\d+/)[0]);
         }
       }
-      return sum >= 300;
+      return sum >= 361;
     }
 
     function showOverlay() {
       overlayElement.classList.add('show');
       setTimeout(() => {
         overlayElement.classList.remove('show');
-      }, 2000);
+      }, 1000);
     }
 
     function checkBounty(resultArray) {
@@ -197,7 +197,7 @@
       `;
       document.getElementById('acceptBtn').addEventListener('click', () => {
         bountyInfoElement.innerHTML = `
-          <p>你需要帮助神秘客户洗出${target}点敏捷，如放弃则支付1000元违约金</p>
+          <p>你需要帮助n1神秘玩家洗出${target}点敏捷，如放弃则支付1000元违约金</p>
           <button id="giveUpBtn">放弃</button>
         `;
         document.getElementById('giveUpBtn').addEventListener('click', () => {
@@ -246,7 +246,7 @@
 
     document.getElementById('resetBtn').addEventListener('click', () => {
       if (currentBounty) {
-        if (confirm('神秘客户还在等你领赏金，确定不洗了吗?')) {
+        if (confirm('神秘玩家还在等你领赏金，确定不洗了吗?')) {
           currentBounty = null;
           bountyInfoElement.innerHTML = '';
           reset();
