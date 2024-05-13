@@ -171,6 +171,7 @@
       { range: [236, 488], name: '物理闪避' },
       { range: [236, 488], name: '忽视物理闪避' },
       { range: [236, 488], name: '物理命中' },
+      { range: [51, 76], name: '每回合怒气' },
     ];
 
     function getRandomItem() {
@@ -181,10 +182,10 @@
 
     function getRandomCount() {
       const rand = Math.random();
-      if (rand < 0.3) return 1;
-      if (rand < 0.55) return 2;
-      if (rand < 0.75) return 3;
-      if (rand < 0.9) return 4;
+      if (rand < 0.1) return 1;
+      if (rand < 0.3) return 2;
+      if (rand < 0.6) return 3;
+      if (rand < 0.8) return 4;
       return 5;
     }
 
@@ -247,7 +248,7 @@
       `;
       document.getElementById('acceptBtn').addEventListener('click', () => {
         bountyInfoElement.innerHTML = `
-          <p>你需要帮助n1神秘玩家洗出${target}点敏捷，如放弃则支付1000元违约金</p>
+          <p>你需要帮助神秘玩家洗出${target}点敏捷，如放弃则支付1000元违约金</p>
           <button id="giveUpBtn">放弃</button>
         `;
         document.getElementById('giveUpBtn').addEventListener('click', () => {
