@@ -15,42 +15,48 @@
         body {
             background-color: #f5f5f5;
             color: #333;
+            font-size: 14px;
         }
 
         #game-container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         header {
             text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
             border-bottom: 1px solid #eee;
         }
 
         h1 {
             color: #8B4513;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            margin-bottom: 5px;
+            font-size: 1.8em;
         }
 
         h2 {
             color: #8B4513;
-            margin-bottom: 15px;
-            font-size: 1.8em;
+            margin-bottom: 8px;
+            font-size: 1.3em;
             display: flex;
             align-items: center;
         }
 
+        h3 {
+            font-size: 1.1em;
+        }
+
         .section-toggle {
             cursor: pointer;
-            margin-right: 10px;
-            font-size: 1.5em;
+            margin-right: 8px;
+            font-size: 1.2em;
             transition: transform 0.3s;
         }
 
@@ -59,35 +65,39 @@
         }
 
         #currency-display {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            margin-top: 10px;
         }
 
         .currency-item {
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 5px;
             text-align: center;
-            margin: 5px;
             background-color: #f9f9f9;
-            flex: 1;
-            min-width: 120px;
             position: relative;
             overflow: hidden;
+            font-size: 0.9em;
+        }
+
+        .currency-item h3 {
+            font-size: 1em;
+            margin-bottom: 3px;
         }
 
         .currency-item p {
             position: relative;
             z-index: 2;
+            font-size: 0.9em;
         }
 
         .currency-special {
             position: absolute;
-            bottom: 5px;
-            right: 5px;
-            font-size: 0.8em;
+            bottom: 3px;
+            right: 3px;
+            font-size: 0.7em;
             opacity: 0.7;
             z-index: 1;
         }
@@ -101,8 +111,8 @@
         }
 
         section {
-            margin-bottom: 30px;
-            padding: 20px;
+            margin-bottom: 15px;
+            padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #fff;
@@ -110,7 +120,7 @@
         }
 
         .section-content {
-            max-height: 2000px;
+            max-height: 1000px;
             opacity: 1;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -121,59 +131,61 @@
             opacity: 0;
         }
 
-        .flex-container {
+        .tab-container {
+            margin-top: 15px;
+        }
+
+        .tab-buttons {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+            margin-bottom: 10px;
         }
 
-        .flex-section {
+        .tab-button {
             flex: 1;
-            min-width: 300px;
-        }
-
-        #store-tabs {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        #store-tabs button {
-            flex: 1;
-            padding: 10px;
+            padding: 8px;
             background-color: #f0f0f0;
             border: 1px solid #ddd;
             cursor: pointer;
-            font-size: 1.1em;
+            font-size: 0.9em;
             transition: background-color 0.3s;
         }
 
-        #store-tabs button:hover {
+        .tab-button:hover {
             background-color: #e0e0e0;
         }
 
-        #store-tabs button.active {
+        .tab-button.active {
             background-color: #8B4513;
             color: white;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .store-item {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
             position: relative;
             overflow: hidden;
+            font-size: 0.9em;
         }
 
         .price-trend {
             position: absolute;
             top: 0;
             right: 0;
-            padding: 5px;
-            font-size: 0.8em;
+            padding: 3px;
+            font-size: 0.7em;
             color: white;
             border-bottom-left-radius: 5px;
         }
@@ -191,31 +203,34 @@
         }
 
         .item-icon {
-            font-size: 2em;
-            margin-right: 15px;
+            font-size: 1.5em;
+            margin-right: 10px;
         }
 
         .item-details {
             flex: 1;
+            font-size: 0.9em;
         }
 
         .item-price {
-            margin-left: 15px;
+            margin-left: 10px;
             font-weight: bold;
+            font-size: 0.9em;
         }
 
         .item-actions {
-            margin-left: 15px;
+            margin-left: 10px;
         }
 
         button {
-            padding: 8px 15px;
+            padding: 5px 10px;
             background-color: #8B4513;
             color: white;
             border: none;
             border-radius: 3px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 0.9em;
         }
 
         button:hover {
@@ -232,7 +247,7 @@
         }
 
         #gold-egg {
-            font-size: 5em;
+            font-size: 3em;
             cursor: pointer;
             transition: transform 0.3s;
             display: inline-block;
@@ -242,79 +257,83 @@
             transform: scale(1.1);
         }
 
-        #inventory-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        #inventory-title {
-            width: 100%;
-        }
-
         .inventory-item {
-            flex: 1;
-            min-width: 200px;
-            margin: 5px;
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-size: 0.9em;
+        }
+
+        .conversion-option {
+            margin-bottom: 10px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             background-color: #f9f9f9;
+            font-size: 0.9em;
         }
 
-        .conversion-option {
-            margin-bottom: 15px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+        .conversion-option input {
+            width: 70px;
+            padding: 3px;
+            margin-right: 5px;
         }
 
         footer {
             text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
+            margin-top: 15px;
+            padding-top: 10px;
             border-top: 1px solid #eee;
             color: #666;
+            font-size: 0.8em;
         }
 
         .notification {
-            padding: 10px;
-            margin: 10px 0;
+            padding: 8px;
+            margin: 8px 0;
             border-radius: 5px;
             background-color: #f8f8f8;
             border-left: 4px solid #8B4513;
+            font-size: 0.9em;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .market-news {
-            padding: 10px;
+            padding: 8px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             background-color: #f9f9f9;
+            font-size: 0.9em;
         }
 
         .market-news h3 {
             border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+            padding-bottom: 3px;
+            margin-bottom: 5px;
+            font-size: 1em;
         }
 
         .event-notification {
-            padding: 15px;
-            margin: 15px 0;
+            padding: 10px;
+            margin: 10px 0;
             border-radius: 5px;
             background-color: #FFF8E1;
             border-left: 4px solid #FFC107;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-size: 0.9em;
         }
 
         .progress-bar-container {
             width: 100%;
-            height: 10px;
+            height: 8px;
             background-color: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 4px;
+            margin-top: 8px;
             overflow: hidden;
         }
 
@@ -326,20 +345,24 @@
         }
 
         .stats-display {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            margin-top: 10px;
         }
 
         .stat-item {
-            flex: 1;
-            min-width: 120px;
-            padding: 10px;
+            padding: 5px;
             border: 1px solid #ddd;
             border-radius: 5px;
             text-align: center;
             background-color: #f0f0f0;
+            font-size: 0.8em;
+        }
+
+        .stat-item h4 {
+            font-size: 0.9em;
+            margin-bottom: 2px;
         }
 
         @keyframes pulse {
@@ -351,6 +374,196 @@
         .pulse {
             animation: pulse 1s infinite;
         }
+
+        .timer-display {
+            text-align: center;
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #8B4513;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.5em;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        #quick-actions {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 10px;
+            display: none;
+            z-index: 999;
+        }
+
+        #quick-actions.visible {
+            display: block;
+        }
+
+        .quick-action-button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+            padding: 8px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 5px;
+            background-color: #FF5722;
+            color: white;
+            border-radius: 10px;
+            font-size: 0.7em;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        .alert {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-warning {
+            color: #856404;
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+        }
+
+        .flash {
+            animation: flash 0.5s ease-in-out;
+        }
+
+        @keyframes flash {
+            0% { background-color: transparent; }
+            50% { background-color: rgba(255, 255, 0, 0.5); }
+            100% { background-color: transparent; }
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 700px) {
+            body {
+                font-size: 12px;
+            }
+            
+            #game-container {
+                padding: 5px;
+            }
+            
+            .store-item, .inventory-item, .currency-item {
+                padding: 5px;
+            }
+            
+            .item-icon {
+                font-size: 1.2em;
+                margin-right: 5px;
+            }
+            
+            button {
+                padding: 4px 8px;
+                font-size: 0.85em;
+            }
+            
+            #gold-egg {
+                font-size: 2.5em;
+            }
+            
+            .stats-display {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .conversion-option {
+                padding: 8px;
+            }
+            
+            .conversion-option input {
+                width: 60px;
+            }
+        }
+
+        /* Mini market feature */
+        .mini-market {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .mini-market-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: white;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        /* Achievements system */
+        .achievement {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 3px solid #8B4513;
+        }
+
+        .achievement-icon {
+            margin-right: 10px;
+            font-size: 1.3em;
+        }
+
+        .achievement-locked {
+            opacity: 0.5;
+        }
+
+        /* Loan system */
+        .loan-option {
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .loan-active {
+            background-color: #fff3cd;
+        }
     </style>
 </head>
 <body>
@@ -359,6 +572,9 @@
         <!-- Header -->
         <header>
             <h1>天书小摊</h1>
+            <div class="timer-display">
+                <span id="market-timer">市场更新：15s</span>
+            </div>
             <div id="currency-display">
                 <!-- Currency information will go here -->
             </div>
@@ -414,31 +630,101 @@
                 </div>
             </section>
             
-            <!-- Stores and Inventory in flex container -->
-            <div class="flex-container">
-                <!-- Stores section -->
-                <section id="stores-section" class="flex-section">
-                    <h2>商店</h2>
-                    <!-- Store tabs -->
-                    <div id="store-tabs">
-                        <button id="gold-store-tab">金店</button>
-                        <button id="silver-ingot-store-tab">银锭店</button>
-                        <button id="silver-note-store-tab">银票店</button>
+            <!-- Tab Container for Stores/Inventory -->
+            <section id="main-section">
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" data-tab="store-tab">商店</button>
+                        <button class="tab-button" data-tab="inventory-tab">库存</button>
+                        <button class="tab-button" data-tab="features-tab">特色</button>
                     </div>
                     
-                    <!-- Store content -->
-                    <div id="store-content">
-                        <!-- Store items will go here -->
+                    <!-- Store Tab -->
+                    <div id="store-tab" class="tab-content active">
+                        <!-- Store tabs -->
+                        <div id="store-tabs">
+                            <button id="gold-store-tab">金店</button>
+                            <button id="silver-ingot-store-tab">银锭店</button>
+                            <button id="silver-note-store-tab">银票店</button>
+                        </div>
+                        
+                        <!-- Store content -->
+                        <div id="store-content">
+                            <!-- Store items will go here -->
+                        </div>
                     </div>
-                </section>
-                
-                <!-- Inventory section -->
-                <section id="inventory-section" class="flex-section">
-                    <h2 id="inventory-title">库存</h2>
-                    <!-- Player's inventory will go here -->
-                </section>
-            </div>
+                    
+                    <!-- Inventory Tab -->
+                    <div id="inventory-tab" class="tab-content">
+                        <h3>库存</h3>
+                        <div id="inventory-content">
+                            <!-- Player's inventory will go here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Features Tab -->
+                    <div id="features-tab" class="tab-content">
+                        <div class="features-container">
+                            <h3>特色功能</h3>
+                            
+                            <!-- Mini market -->
+                            <div class="feature-section">
+                                <h4>闪电市场 <span class="badge" id="mini-market-badge">新</span></h4>
+                                <p>稀有商品限时特卖！每次市场更新有机会刷新</p>
+                                <div id="mini-market" class="mini-market">
+                                    <!-- Mini market items will go here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Loans -->
+                            <div class="feature-section">
+                                <h4>商业贷款</h4>
+                                <div id="loan-system">
+                                    <!-- Loan options will go here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Achievements -->
+                            <div class="feature-section">
+                                <h4>成就系统</h4>
+                                <div id="achievements-container">
+                                    <!-- Achievements will go here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Price prediction -->
+                            <div class="feature-section">
+                                <h4>价格预测</h4>
+                                <div id="prediction-system">
+                                    <select id="prediction-item">
+                                        <option value="">选择商品</option>
+                                        <!-- Items will be added here -->
+                                    </select>
+                                    <select id="prediction-trend">
+                                        <option value="up">上涨</option>
+                                        <option value="down">下跌</option>
+                                    </select>
+                                    <input type="number" id="prediction-amount" placeholder="投注额" min="1000">
+                                    <button id="make-prediction">预测</button>
+                                    <div id="prediction-results">
+                                        <!-- Prediction results will go here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+        
+        <!-- Quick action floating button -->
+        <div class="floating-button" id="quick-action-button">⚡</div>
+        <div id="quick-actions">
+            <button class="quick-action-button" id="quick-buy">快速购买热门商品</button>
+            <button class="quick-action-button" id="quick-sell">一键出售所有商品</button>
+            <button class="quick-action-button" id="quick-exchange">快速货币兑换</button>
+            <button class="quick-action-button" id="quick-egg">快速抽奖</button>
+        </div>
         
         <!-- Footer -->
         <footer>
@@ -467,10 +753,24 @@
             },
             marketTrends: {},
             events: [],
+            timerCount: 15, // 15-second timer for market updates
+            activePredictions: [],
+            miniMarketItems: [],
+            activeLoans: [],
+            achievements: [],
+            unlockedAchievements: [],
             sectionCollapsed: {
                 currency: true,
                 goldEgg: true,
                 news: false
+            },
+            statistics: {
+                totalPurchases: 0,
+                totalSales: 0,
+                totalProfit: 0,
+                totalEggsOpen: 0,
+                biggestProfit: 0,
+                mostExpensivePurchase: 0
             },
             // Special currency effects
             currencyEffects: {
@@ -500,32 +800,151 @@
         // Store items with price fluctuation metadata (prices in wen)
         const storeItems = {
             gold: [
-                { id: 'ancient_book', name: '古籍', icon: '📜', price: 100 * 1000, basePrice: 100 * 1000, currency: 'goldIngot', resalePrice: 80 * 1000, volatility: 0.1, trend: 0, rarity: 3 },
-                { id: 'jade', name: '玉石', icon: '🧩', price: 50 * 1000, basePrice: 50 * 1000, currency: 'goldIngot', resalePrice: 40 * 1000, volatility: 0.2, trend: 0, rarity: 2 },
-                { id: 'tea', name: '珍贵茶叶', icon: '🍵', price: 30 * 1000, basePrice: 30 * 1000, currency: 'goldIngot', resalePrice: 25 * 1000, volatility: 0.3, trend: 0, rarity: 1 },
-                { id: 'painting', name: '名家字画', icon: '🖼️', price: 150 * 1000, basePrice: 150 * 1000, currency: 'goldIngot', resalePrice: 120 * 1000, volatility: 0.15, trend: 0, rarity: 4 },
-                { id: 'gold_jewelry', name: '金饰', icon: '💍', price: 80 * 1000, basePrice: 80 * 1000, currency: 'goldNote', resalePrice: 70 * 1000, volatility: 0.25, trend: 0, rarity: 3 },
-                { id: 'silk', name: '丝绸', icon: '🧶', price: 60 * 1000, basePrice: 60 * 1000, currency: 'goldNote', resalePrice: 50 * 1000, volatility: 0.2, trend: 0, rarity: 2 },
-                { id: 'spice', name: '稀有香料', icon: '🌶️', price: 40 * 1000, basePrice: 40 * 1000, currency: 'goldNote', resalePrice: 30 * 1000, volatility: 0.3, trend: 0, rarity: 2 },
+                { id: 'ancient_book', name: '古籍', icon: '📜', price: 100 * 1000, basePrice: 100 * 1000, currency: 'goldIngot', resalePrice: 80 * 1000, volatility: 0.2, trend: 0, rarity: 3 },
+                { id: 'jade', name: '玉石', icon: '🧩', price: 50 * 1000, basePrice: 50 * 1000, currency: 'goldIngot', resalePrice: 40 * 1000, volatility: 0.3, trend: 0, rarity: 2 },
+                { id: 'tea', name: '珍贵茶叶', icon: '🍵', price: 30 * 1000, basePrice: 30 * 1000, currency: 'goldIngot', resalePrice: 25 * 1000, volatility: 0.4, trend: 0, rarity: 1 },
+                { id: 'painting', name: '名家字画', icon: '🖼️', price: 150 * 1000, basePrice: 150 * 1000, currency: 'goldIngot', resalePrice: 120 * 1000, volatility: 0.25, trend: 0, rarity: 4 },
+                { id: 'gold_jewelry', name: '金饰', icon: '💍', price: 80 * 1000, basePrice: 80 * 1000, currency: 'goldNote', resalePrice: 70 * 1000, volatility: 0.35, trend: 0, rarity: 3 },
+                { id: 'silk', name: '丝绸', icon: '🧶', price: 60 * 1000, basePrice: 60 * 1000, currency: 'goldNote', resalePrice: 50 * 1000, volatility: 0.3, trend: 0, rarity: 2 },
+                { id: 'spice', name: '稀有香料', icon: '🌶️', price: 40 * 1000, basePrice: 40 * 1000, currency: 'goldNote', resalePrice: 30 * 1000, volatility: 0.45, trend: 0, rarity: 2 },
             ],
             silverIngot: [
-                { id: 'bronze_vessel', name: '铜器', icon: '🏺', price: 500 * 1000, basePrice: 500 * 1000, currency: 'silverIngot', resalePrice: 400 * 1000, volatility: 0.25, trend: 0, rarity: 3 },
-                { id: 'wine', name: '老酒', icon: '🍶', price: 300 * 1000, basePrice: 300 * 1000, currency: 'silverIngot', resalePrice: 250 * 1000, volatility: 0.3, trend: 0, rarity: 2 },
-                { id: 'calligraphy', name: '书法', icon: '✒️', price: 700 * 1000, basePrice: 700 * 1000, currency: 'silverIngot', resalePrice: 600 * 1000, volatility: 0.2, trend: 0, rarity: 4 },
-                { id: 'medicine', name: '药材', icon: '🌿', price: 250 * 1000, basePrice: 250 * 1000, currency: 'silverIngot', resalePrice: 200 * 1000, volatility: 0.35, trend: 0, rarity: 2 },
-                { id: 'silver_jewelry', name: '银饰', icon: '⚱️', price: 350 * 1000, basePrice: 350 * 1000, currency: 'silverIngot', resalePrice: 300 * 1000, volatility: 0.25, trend: 0, rarity: 3 },
+                { id: 'bronze_vessel', name: '铜器', icon: '🏺', price: 500 * 1000, basePrice: 500 * 1000, currency: 'silverIngot', resalePrice: 400 * 1000, volatility: 0.35, trend: 0, rarity: 3 },
+                { id: 'wine', name: '老酒', icon: '🍶', price: 300 * 1000, basePrice: 300 * 1000, currency: 'silverIngot', resalePrice: 250 * 1000, volatility: 0.4, trend: 0, rarity: 2 },
+                { id: 'calligraphy', name: '书法', icon: '✒️', price: 700 * 1000, basePrice: 700 * 1000, currency: 'silverIngot', resalePrice: 600 * 1000, volatility: 0.3, trend: 0, rarity: 4 },
+                { id: 'medicine', name: '药材', icon: '🌿', price: 250 * 1000, basePrice: 250 * 1000, currency: 'silverIngot', resalePrice: 200 * 1000, volatility: 0.45, trend: 0, rarity: 2 },
+                { id: 'silver_jewelry', name: '银饰', icon: '⚱️', price: 350 * 1000, basePrice: 350 * 1000, currency: 'silverIngot', resalePrice: 300 * 1000, volatility: 0.35, trend: 0, rarity: 3 },
             ],
             silverNote: [
-                { id: 'fruit', name: '水果', icon: '🍎', price: 50 * 1000, basePrice: 50 * 1000, currency: 'silverNote', resalePrice: 40 * 1000, volatility: 0.4, trend: 0, rarity: 1 },
-                { id: 'candies', name: '糖果', icon: '🍬', price: 30 * 1000, basePrice: 30 * 1000, currency: 'silverNote', resalePrice: 25 * 1000, volatility: 0.35, trend: 0, rarity: 1 },
-                { id: 'paper', name: '纸张', icon: '📃', price: 20 * 1000, basePrice: 20 * 1000, currency: 'silverNote', resalePrice: 15 * 1000, volatility: 0.3, trend: 0, rarity: 1 },
-                { id: 'incense', name: '香', icon: '🧨', price: 40 * 1000, basePrice: 40 * 1000, currency: 'silverNote', resalePrice: 30 * 1000, volatility: 0.35, trend: 0, rarity: 2 },
-                { id: 'luxury_food', name: '珍馐美食', icon: '🍲', price: 100 * 1000, basePrice: 100 * 1000, currency: 'silverNote', resalePrice: 80 * 1000, volatility: 0.45, trend: 0, rarity: 3 },
-                { id: 'foreign_trinket', name: '异域小物', icon: '🧸', price: 70 * 1000, basePrice: 70 * 1000, currency: 'silverNote', resalePrice: 55 * 1000, volatility: 0.4, trend: 0, rarity: 2 },
+                { id: 'fruit', name: '水果', icon: '🍎', price: 50 * 1000, basePrice: 50 * 1000, currency: 'silverNote', resalePrice: 40 * 1000, volatility: 0.5, trend: 0, rarity: 1 },
+                { id: 'candies', name: '糖果', icon: '🍬', price: 30 * 1000, basePrice: 30 * 1000, currency: 'silverNote', resalePrice: 25 * 1000, volatility: 0.45, trend: 0, rarity: 1 },
+                { id: 'paper', name: '纸张', icon: '📃', price: 20 * 1000, basePrice: 20 * 1000, currency: 'silverNote', resalePrice: 15 * 1000, volatility: 0.4, trend: 0, rarity: 1 },
+                { id: 'incense', name: '香', icon: '🧨', price: 40 * 1000, basePrice: 40 * 1000, currency: 'silverNote', resalePrice: 30 * 1000, volatility: 0.5, trend: 0, rarity: 2 },
+                { id: 'luxury_food', name: '珍馐美食', icon: '🍲', price: 100 * 1000, basePrice: 100 * 1000, currency: 'silverNote', resalePrice: 80 * 1000, volatility: 0.55, trend: 0, rarity: 3 },
+                { id: 'foreign_trinket', name: '异域小物', icon: '🧸', price: 70 * 1000, basePrice: 70 * 1000, currency: 'silverNote', resalePrice: 55 * 1000, volatility: 0.5, trend: 0, rarity: 2 },
             ]
         };
 
-        // Market events that can affect prices
+        // Rare items for mini market
+        const rareItems = [
+            { id: 'dragon_pearl', name: '龙珠', icon: '🔮', price: 300 * 1000, basePrice: 300 * 1000, currency: 'goldIngot', resalePrice: 280 * 1000, volatility: 0.3, trend: 0, rarity: 5 },
+            { id: 'phoenix_feather', name: '凤凰羽', icon: '🪶', price: 250 * 1000, basePrice: 250 * 1000, currency: 'goldIngot', resalePrice: 220 * 1000, volatility: 0.35, trend: 0, rarity: 5 },
+            { id: 'immortal_herb', name: '仙草', icon: '🌱', price: 500 * 1000, basePrice: 500 * 1000, currency: 'goldNote', resalePrice: 450 * 1000, volatility: 0.4, trend: 0, rarity: 5 },
+            { id: 'heaven_scroll', name: '天书卷轴', icon: '📿', price: 1000 * 1000, basePrice: 1000 * 1000, currency: 'goldNote', resalePrice: 900 * 1000, volatility: 0.25, trend: 0, rarity: 6 },
+            { id: 'divine_weapon', name: '神兵利器', icon: '⚔️', price: 2000 * 1000, basePrice: 2000 * 1000, currency: 'silverIngot', resalePrice: 1800 * 1000, volatility: 0.3, trend: 0, rarity: 6 },
+            { id: 'royal_jade', name: '皇家玉玺', icon: '💎', price: 3000 * 1000, basePrice: 3000 * 1000, currency: 'silverIngot', resalePrice: 2700 * 1000, volatility: 0.2, trend: 0, rarity: 7 },
+            { id: 'ancient_map', name: '古代地图', icon: '🗺️', price: 800 * 1000, basePrice: 800 * 1000, currency: 'silverNote', resalePrice: 700 * 1000, volatility: 0.45, trend: 0, rarity: 5 },
+            { id: 'magical_powder', name: '仙尘', icon: '✨', price: 150 * 1000, basePrice: 150 * 1000, currency: 'silverNote', resalePrice: 130 * 1000, volatility: 0.5, trend: 0, rarity: 4 }
+        ];
+
+        // Achievements
+        const achievementsList = [
+            { id: 'first_sale', name: '初次交易', description: '第一次售出物品', icon: '🏆', requirement: () => gameState.statistics.totalSales >= 1, reward: 5000 },
+            { id: 'big_spender', name: '大手笔', description: '一次购买超过100两金子的物品', icon: '💰', requirement: () => gameState.statistics.mostExpensivePurchase >= 100000, reward: 10000 },
+            { id: 'profit_master', name: '利润大师', description: '累计利润超过1000两银子', icon: '📈', requirement: () => gameState.statistics.totalProfit >= 1000000, reward: 20000 },
+            { id: 'lucky_egg', name: '幸运蛋王', description: '开出10个金蛋', icon: '🥚', requirement: () => gameState.statistics.totalEggsOpen >= 10, reward: 15000 },
+            { id: 'business_tycoon', name: '商业大亨', description: '达到商业等级5', icon: '👑', requirement: () => gameState.businessLevel >= 5, reward: 50000 },
+            { id: 'collector', name: '收藏家', description: '同时拥有10种不同物品', icon: '🧮', requirement: () => Object.keys(gameState.inventory).length >= 10, reward: 30000 },
+            { id: 'market_predictor', name: '市场预言家', description: '成功预测3次价格趋势', icon: '🔮', requirement: () => gameState.statistics.successfulPredictions >= 3, reward: 25000 },
+            { id: 'rare_collector', name: '稀有收藏家', description: '拥有一件稀有度5+的物品', icon: '💎', requirement: () => Object.values(gameState.inventory).some(item => item.rarity >= 5), reward: 40000 }
+        ];
+
+        // New additional market events
+        const additionalMarketEvents = [
+            {
+                name: "皇室婚礼",
+                description: "皇家婚礼即将举行，奢侈品价格飙升！",
+                effect: {
+                    type: "items",
+                    target: ["gold_jewelry", "silver_jewelry", "jade", "silk", "luxury_food"],
+                    trend: 0.5
+                },
+                duration: 2
+            },
+            {
+                name: "边境冲突",
+                description: "边境发生小规模冲突，运输受阻，外来物品价格上涨。",
+                effect: {
+                    type: "items",
+                    target: ["foreign_trinket", "spice"],
+                    trend: 0.4
+                },
+                duration: 1
+            },
+            {
+                name: "海路阻断",
+                description: "海上风暴阻断贸易路线，珍稀商品价格暴涨。",
+                effect: {
+                    type: "category",
+                    target: "gold",
+                    volatility: 0.3,
+                    trend: 0.3
+                },
+                duration: 2
+            },
+            {
+                name: "皇家征税",
+                description: "朝廷大幅增加各类税收，市场恐慌，金价剧烈波动。",
+                effect: {
+                    type: "currency",
+                    target: "goldIngot",
+                    multiplier: 0.9
+                },
+                duration: 2
+            },
+            {
+                name: "市场崩盘",
+                description: "市场信心崩溃，银票价值暴跌，人们争相囤积实物资产。",
+                effect: {
+                    type: "currency",
+                    target: "silverNote",
+                    multiplier: 0.5
+                },
+                duration: 1
+            },
+            {
+                name: "金矿发现",
+                description: "附近发现金矿，金价下跌，工具类物品需求增加。",
+                effect: {
+                    type: "currency",
+                    target: "goldIngot",
+                    multiplier: 0.7
+                },
+                duration: 3
+            },
+            {
+                name: "天灾风暴",
+                description: "特大风暴袭击沿海地区，物资短缺，价格普遍上涨。",
+                effect: {
+                    type: "global",
+                    volatility: 0.5,
+                    trend: 0.4
+                },
+                duration: 1
+            },
+            {
+                name: "瘟疫爆发",
+                description: "城中爆发瘟疫，医药需求暴增，其他物品滞销。",
+                effect: {
+                    type: "items",
+                    target: ["medicine", "tea"],
+                    trend: 0.8
+                },
+                duration: 2
+            },
+            {
+                name: "市场狂热",
+                description: "不明原因的市场狂热，人们疯狂购买各类物品。",
+                effect: {
+                    type: "global",
+                    volatility: 0.7,
+                    trend: 0.3
+                },
+                duration: 1
+            }
+        ];
+
+        // Combine original market events with additional ones
         const marketEvents = [
             {
                 name: "丰收",
@@ -638,10 +1057,306 @@
                     multiplier: 1.2
                 },
                 duration: 2
+            },
+            // Add all additional events
+            ...additionalMarketEvents
+        ];
+
+        // New additional game events
+        const additionalGameEvents = [
+            {
+                name: "神秘商人",
+                description: "一位神秘商人悄悄接近你，称有特殊的商品要卖。",
+                options: [
+                    {
+                        text: "查看商品",
+                        effect: () => {
+                            // Pick a random rare item
+                            const randomRareItem = rareItems[Math.floor(Math.random() * rareItems.length)];
+                            // Discount the price
+                            const discountedPrice = Math.floor(randomRareItem.price * 0.7);
+                            
+                            showNotification(`神秘商人展示了${randomRareItem.name}${randomRareItem.icon}，原价${formatCurrency(randomRareItem.price, '金')}，现只要${formatCurrency(discountedPrice, '金')}！`);
+                            
+                            // Create temporary purchase option
+                            const confirmPurchase = confirm(`是否购买${randomRareItem.name}？价格：${formatCurrency(discountedPrice, '金')}`);
+                            
+                            if (confirmPurchase) {
+                                if (gameState.currencies[randomRareItem.currency] >= discountedPrice) {
+                                    // Purchase the item
+                                    gameState.currencies[randomRareItem.currency] -= discountedPrice;
+                                    
+                                    // Add to inventory
+                                    if (!gameState.inventory[randomRareItem.id]) {
+                                        gameState.inventory[randomRareItem.id] = {
+                                            ...randomRareItem,
+                                            quantity: 1,
+                                            purchasePrice: discountedPrice
+                                        };
+                                    } else {
+                                        gameState.inventory[randomRareItem.id].quantity += 1;
+                                        // Update average purchase price
+                                        gameState.inventory[randomRareItem.id].purchasePrice = Math.floor(
+                                            (gameState.inventory[randomRareItem.id].purchasePrice * (gameState.inventory[randomRareItem.id].quantity - 1) + discountedPrice) / 
+                                            gameState.inventory[randomRareItem.id].quantity
+                                        );
+                                    }
+                                    
+                                    showNotification(`你成功购买了${randomRareItem.name}！`);
+                                    gameState.reputation += 5;
+                                    addExperience(randomRareItem.rarity * 10);
+                                    updateCurrencyDisplay();
+                                    updateInventoryDisplay();
+                                    
+                                    // Track statistics
+                                    gameState.statistics.totalPurchases += 1;
+                                    gameState.statistics.mostExpensivePurchase = Math.max(gameState.statistics.mostExpensivePurchase, discountedPrice);
+                                    
+                                    return true;
+                                } else {
+                                    showNotification("你没有足够的钱购买这件宝物。神秘商人失望地离开了。");
+                                    return true;
+                                }
+                            } else {
+                                showNotification("你拒绝了神秘商人的交易，他悄然离去。");
+                                return true;
+                            }
+                        }
+                    },
+                    {
+                        text: "婉拒交易",
+                        effect: () => {
+                            showNotification("你婉拒了神秘商人，他留下了一个小包裹便匆匆离去。里面有一些银票。");
+                            gameState.currencies.silverNote += 20000;
+                            updateCurrencyDisplay();
+                            return true;
+                        }
+                    }
+                ]
+            },
+            {
+                name: "大盗来袭",
+                description: "一伙盗贼突然出现在市场，威胁要抢走所有商户的货物！",
+                options: [
+                    {
+                        text: "与其他商人联手抵抗",
+                        effect: () => {
+                            const random = Math.random();
+                            if (random < 0.6) {
+                                showNotification("在你的带领下，商户们成功赶走了盗贼。官府奖励了你一笔银两和声望！");
+                                gameState.currencies.silverIngot += 50000;
+                                gameState.reputation += 25;
+                                updateCurrencyDisplay();
+                                return true;
+                            } else {
+                                // Lose some currency
+                                const lossAmount = Math.floor(gameState.currencies.silverIngot * 0.3);
+                                gameState.currencies.silverIngot -= lossAmount;
+                                
+                                showNotification(`盗贼太强了，商户们奋力抵抗仍损失了一些财物。你失去了${formatCurrency(lossAmount, '银')}，但声望有所提升。`);
+                                gameState.reputation += 10;
+                                updateCurrencyDisplay();
+                                return true;
+                            }
+                        }
+                    },
+                    {
+                        text: "支付保护费",
+                        effect: () => {
+                            // Calculate protection money
+                            const protectionFee = Math.floor(gameState.currencies.silverIngot * 0.15);
+                            
+                            if (gameState.currencies.silverIngot >= protectionFee) {
+                                gameState.currencies.silverIngot -= protectionFee;
+                                
+                                showNotification(`你支付了${formatCurrency(protectionFee, '银')}作为保护费，盗贼放过了你的商摊。`);
+                                updateCurrencyDisplay();
+                                return true;
+                            } else {
+                                // Not enough to pay, lose more
+                                const availableSilver = gameState.currencies.silverIngot;
+                                gameState.currencies.silverIngot = 0;
+                                
+                                showNotification(`你没有足够的银两支付保护费，盗贼抢走了你所有的银两（${formatCurrency(availableSilver, '银')}）！`);
+                                updateCurrencyDisplay();
+                                return true;
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                name: "天降横财",
+                description: "突然，一支官府商队经过，几箱货物不慎跌落在你的摊位旁。官兵匆忙离去，似乎没有发现。",
+                options: [
+                    {
+                        text: "归还官府",
+                        effect: () => {
+                            showNotification("你诚实地将货物归还给官府。官府大为感动，给予你重重奖赏和表彰！");
+                            gameState.currencies.goldIngot += 30000;
+                            gameState.reputation += 50;
+                            updateCurrencyDisplay();
+                            
+                            // Special achievement for honesty
+                            if (!gameState.unlockedAchievements.includes('honest_merchant')) {
+                                gameState.unlockedAchievements.push('honest_merchant');
+                                showNotification("解锁成就：诚实商人！");
+                                addExperience(50);
+                            }
+                            
+                            return true;
+                        }
+                    },
+                    {
+                        text: "悄悄据为己有",
+                        effect: () => {
+                            const random = Math.random();
+                            if (random < 0.3) {
+                                showNotification("你被人发现私藏官府财物，官兵将你拘捕并处以重罚！");
+                                
+                                // Lose significant money and reputation
+                                gameState.currencies.goldIngot = Math.floor(gameState.currencies.goldIngot * 0.5);
+                                gameState.currencies.silverIngot = Math.floor(gameState.currencies.silverIngot * 0.5);
+                                gameState.reputation -= 30;
+                                
+                                if (gameState.reputation < 0) {
+                                    gameState.reputation = 0;
+                                }
+                                
+                                updateCurrencyDisplay();
+                                return true;
+                            } else {
+                                // Add random valuable items to inventory
+                                let itemsAdded = 0;
+                                for (let i = 0; i < 3; i++) {
+                                    if (Math.random() < 0.7) {
+                                        const randomRareItem = rareItems[Math.floor(Math.random() * rareItems.length)];
+                                        
+                                        if (!gameState.inventory[randomRareItem.id]) {
+                                            gameState.inventory[randomRareItem.id] = {
+                                                ...randomRareItem,
+                                                quantity: 1,
+                                                purchasePrice: 0 // Got for free
+                                            };
+                                        } else {
+                                            gameState.inventory[randomRareItem.id].quantity += 1;
+                                        }
+                                        
+                                        itemsAdded++;
+                                    }
+                                }
+                                
+                                showNotification(`你悄悄将货物据为己有，获得了${itemsAdded}件珍贵物品！`);
+                                updateInventoryDisplay();
+                                return true;
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                name: "怪异天象",
+                description: "天空出现异象，人们纷纷议论这是吉兆还是凶兆。市场情绪高度紧张。",
+                options: [
+                    {
+                        text: "预言好运将至",
+                        effect: () => {
+                            showNotification("你大声宣称这是祥瑞之兆，市场将繁荣昌盛。人们受到鼓舞，市场情绪高涨！");
+                            
+                            // Create positive market effect
+                            gameState.events.push({
+                                name: "祥瑞预言",
+                                description: "市场充满乐观情绪，交易活跃。",
+                                effect: {
+                                    type: "global",
+                                    volatility: 0.3,
+                                    trend: 0.2
+                                },
+                                duration: 3
+                            });
+                            
+                            gameState.reputation += 10;
+                            updateCurrencyDisplay();
+                            updateMarket();
+                            return true;
+                        }
+                    },
+                    {
+                        text: "预言灾难将至",
+                        effect: () => {
+                            showNotification("你警告大家这是不祥之兆，灾难即将来临。市场陷入恐慌，物价大幅波动！");
+                            
+                            // Create negative market effect
+                            gameState.events.push({
+                                name: "灾难预言",
+                                description: "市场恐慌蔓延，物价剧烈波动。",
+                                effect: {
+                                    type: "global",
+                                    volatility: 0.8,
+                                    trend: -0.1
+                                },
+                                duration: 2
+                            });
+                            
+                            // But you can profit from the chaos
+                            gameState.currencies.silverIngot += 30000;
+                            showNotification("在混乱中，你暗中收购了低价抛售的物品，获利颇丰！");
+                            
+                            updateCurrencyDisplay();
+                            updateMarket();
+                            return true;
+                        }
+                    }
+                ]
+            },
+            {
+                name: "铸币厂事故",
+                description: "朝廷铸币厂发生大火，新铸造的银币数量锐减。",
+                options: [
+                    {
+                        text: "囤积银两",
+                        effect: () => {
+                            if (gameState.currencies.silverIngot < 50000) {
+                                showNotification("你没有足够的银两进行囤积。错失了一次投资机会。");
+                                return true;
+                            }
+                            
+                            // Lock some silver but get higher return later
+                            const investAmount = Math.min(gameState.currencies.silverIngot, 100000);
+                            gameState.currencies.silverIngot -= investAmount;
+                            
+                            showNotification(`你囤积了${formatCurrency(investAmount, '银')}，等待价格上涨。3个市场周期后将获得收益。`);
+                            
+                            // Create timeout to return investment with profit
+                            setTimeout(() => {
+                                const returnAmount = Math.floor(investAmount * 1.8);
+                                gameState.currencies.silverIngot += returnAmount;
+                                showNotification(`你囤积的银两增值了！获得${formatCurrency(returnAmount, '银')}。`);
+                                updateCurrencyDisplay();
+                            }, 3 * 15 * 1000); // 3 market cycles
+                            
+                            updateCurrencyDisplay();
+                            return true;
+                        }
+                    },
+                    {
+                        text: "立即转投金子",
+                        effect: () => {
+                            // Convert half of silver to gold
+                            const convertAmount = Math.floor(gameState.currencies.silverIngot / 2);
+                            gameState.currencies.silverIngot -= convertAmount;
+                            gameState.currencies.goldIngot += Math.floor(convertAmount / 80); // Better than normal exchange rate
+                            
+                            showNotification(`你迅速将一半的银两兑换成了金子，抢在价格变动前完成了货币转换。`);
+                            updateCurrencyDisplay();
+                            return true;
+                        }
+                    }
+                ]
             }
         ];
 
-        // Random gameplay events
+        // Combine original game events with additional ones
         const gameEvents = [
             {
                 name: "贵客上门",
@@ -678,6 +1393,15 @@
                                 
                                 showNotification(`贵客十分满意，给了你双倍的价格！声望+10`);
                                 gameState.reputation += 10;
+                                
+                                // Track statistics
+                                gameState.statistics.totalSales += 1;
+                                const profit = bonus - (item.purchasePrice || item.price);
+                                gameState.statistics.totalProfit += profit;
+                                if (profit > gameState.statistics.biggestProfit) {
+                                    gameState.statistics.biggestProfit = profit;
+                                }
+                                
                                 return true;
                             } else {
                                 showNotification("你没有稀有物品可以出售，贵客失望离去。");
@@ -874,7 +1598,9 @@
                         }
                     }
                 ]
-            }
+            },
+            // Add all additional events
+            ...additionalGameEvents
         ];
 
         // Seasons and their effects
@@ -884,7 +1610,7 @@
                 effect: {
                     type: "items",
                     target: ["tea", "medicine", "fruit", "paper"],
-                    trend: 0.1
+                    trend: 0.15
                 }
             },
             {
@@ -892,7 +1618,7 @@
                 effect: {
                     type: "items",
                     target: ["spice", "candies", "wine", "silk"],
-                    trend: 0.1
+                    trend: 0.15
                 }
             },
             {
@@ -900,7 +1626,7 @@
                 effect: {
                     type: "items",
                     target: ["fruit", "luxury_food", "bronze_vessel", "calligraphy"],
-                    trend: 0.1
+                    trend: 0.15
                 }
             },
             {
@@ -908,8 +1634,48 @@
                 effect: {
                     type: "items",
                     target: ["jade", "gold_jewelry", "silver_jewelry", "painting"],
-                    trend: 0.1
+                    trend: 0.15
                 }
+            }
+        ];
+
+        // Loan options
+        const loanOptions = [
+            { 
+                id: 'small_loan', 
+                name: '小额贷款', 
+                amount: 50000, // 50 tael silver
+                currency: 'silverIngot',
+                interestRate: 0.1, // 10% interest
+                durationCycles: 5,
+                minBusinessLevel: 1
+            },
+            { 
+                id: 'medium_loan', 
+                name: '中额贷款', 
+                amount: 20000, // 20 tael gold
+                currency: 'goldIngot',
+                interestRate: 0.15, // 15% interest
+                durationCycles: 7,
+                minBusinessLevel: 2
+            },
+            { 
+                id: 'large_loan', 
+                name: '大额贷款', 
+                amount: 500000, // 500 tael silver
+                currency: 'silverIngot',
+                interestRate: 0.2, // 20% interest
+                durationCycles: 10,
+                minBusinessLevel: 3
+            },
+            { 
+                id: 'premium_loan', 
+                name: '高端贷款', 
+                amount: 100000, // 100 tael gold
+                currency: 'goldIngot',
+                interestRate: 0.25, // 25% interest
+                durationCycles: 12,
+                minBusinessLevel: 5
             }
         ];
 
@@ -941,22 +1707,22 @@
                 <div class="currency-item gold">
                     <h3>金子</h3>
                     <p>${formatCurrency(gameState.currencies.goldIngot, '金')}</p>
-                    <span class="currency-special">💎 ${gameState.currencyEffects.goldIngot.name}</span>
+                    <span class="currency-special">💎</span>
                 </div>
                 <div class="currency-item gold">
                     <h3>金票</h3>
                     <p>${formatCurrency(gameState.currencies.goldNote, '金票')}</p>
-                    <span class="currency-special">📈 ${gameState.currencyEffects.goldNote.name}</span>
+                    <span class="currency-special">📈</span>
                 </div>
                 <div class="currency-item silver">
                     <h3>银子</h3>
                     <p>${formatCurrency(gameState.currencies.silverIngot, '银')}</p>
-                    <span class="currency-special">🔄 ${gameState.currencyEffects.silverIngot.name}</span>
+                    <span class="currency-special">🔄</span>
                 </div>
                 <div class="currency-item silver">
                     <h3>银票</h3>
                     <p>${formatCurrency(gameState.currencies.silverNote, '银票')}</p>
-                    <span class="currency-special">🔍 ${gameState.currencyEffects.silverNote.name}</span>
+                    <span class="currency-special">🔍</span>
                 </div>
             `;
             
@@ -965,6 +1731,9 @@
             document.getElementById('reputation').textContent = gameState.reputation;
             document.getElementById('game-date').textContent = `第${gameState.date.year}年 ${seasons[gameState.date.season].name}`;
             document.getElementById('level-progress').style.width = `${gameState.levelProgress}%`;
+            
+            // Check for achievements
+            checkAchievements();
         };
 
         // Currency conversion options
@@ -981,7 +1750,6 @@
                 <div class="conversion-option">
                     <h3>兑换银子</h3>
                     <p>1两金子 = 100两银子</p>
-                    <p><small>${gameState.currencyEffects.goldIngot.effect}</small></p>
                     <div>
                         <input type="number" id="gold-to-silver-ingot" min="0" max="${maxGoldIngotTael}" value="0">
                         <button id="exchange-gold-to-silver">兑换</button>
@@ -990,7 +1758,6 @@
                 <div class="conversion-option">
                     <h3>兑换银票</h3>
                     <p>1两金票 = 100两银票</p>
-                    <p><small>${gameState.currencyEffects.goldNote.effect}</small></p>
                     <div>
                         <input type="number" id="gold-note-to-silver-note" min="0" max="${maxGoldNoteTael}" value="0">
                         <button id="exchange-gold-note-to-silver-note">兑换</button>
@@ -1007,7 +1774,6 @@
                 <div class="conversion-option">
                     <h3>银子转银票</h3>
                     <p>兑换手续费：5%</p>
-                    <p><small>${gameState.currencyEffects.silverIngot.effect}</small></p>
                     <div>
                         <input type="number" id="silver-to-silver-note" min="0" max="${maxSilverIngotTael}" value="0">
                         <button id="exchange-silver-to-silver-note">兑换</button>
@@ -1172,6 +1938,9 @@
             document.getElementById('egg-result').textContent = message;
             updateCurrencyDisplay();
             setupCurrencySection(); // Update max values
+            
+            // Track statistics
+            gameState.statistics.totalEggsOpen += 1;
         };
 
         // Setup store tabs
@@ -1269,10 +2038,13 @@
                     trendPrediction = `<p><small>预测：价格将${item.trend > 0 ? '上涨' : '下跌'}</small></p>`;
                 }
                 
-                // Rarity stars
+                // Rarity stars (limited to 3 for mobile)
                 let rarityStars = '';
-                for (let i = 0; i < item.rarity; i++) {
+                for (let i = 0; i < Math.min(item.rarity, 3); i++) {
                     rarityStars += '⭐';
+                }
+                if (item.rarity > 3) {
+                    rarityStars += '+' + (item.rarity - 3);
                 }
                 
                 itemElement.innerHTML = `
@@ -1280,8 +2052,8 @@
                     <div class="item-icon">${item.icon}</div>
                     <div class="item-details">
                         <h3>${item.name} ${rarityStars}</h3>
-                        <p>购买价：${displayPrice}</p>
-                        <p>出售价：${displayResalePrice}</p>
+                        <p>购买: ${displayPrice}</p>
+                        <p>出售: ${displayResalePrice}</p>
                         ${trendPrediction}
                     </div>
                     <div class="item-actions">
@@ -1331,6 +2103,18 @@
                 
                 // Add experience based on rarity
                 addExperience(item.rarity * 5);
+                
+                // Add purchase to statistics
+                gameState.statistics.totalPurchases += 1;
+                gameState.statistics.mostExpensivePurchase = Math.max(gameState.statistics.mostExpensivePurchase, item.price);
+                
+                // Flash the inventory tab to indicate new item
+                if (document.querySelector('.tab-button[data-tab="inventory-tab"]') && !document.querySelector('#inventory-tab').classList.contains('active')) {
+                    document.querySelector('.tab-button[data-tab="inventory-tab"]').classList.add('flash');
+                    setTimeout(() => {
+                        document.querySelector('.tab-button[data-tab="inventory-tab"]').classList.remove('flash');
+                    }, 1000);
+                }
             } else {
                 const currencyName = item.currency === 'goldIngot' ? '金子' : 
                                    item.currency === 'goldNote' ? '金票' : 
@@ -1379,18 +2163,25 @@
                 
                 // Add experience based on rarity and profit
                 addExperience(bonusExperience + (profit > 0 ? Math.floor(profit / 1000) : 0));
+                
+                // Add sale to statistics
+                gameState.statistics.totalSales += 1;
+                gameState.statistics.totalProfit += profit > 0 ? profit : 0;
+                if (profit > gameState.statistics.biggestProfit) {
+                    gameState.statistics.biggestProfit = profit;
+                }
             }
         };
 
         // Update inventory display
         const updateInventoryDisplay = () => {
-            const inventorySection = document.getElementById('inventory-section');
-            inventorySection.innerHTML = '<h2 id="inventory-title">库存</h2>';
+            const inventoryContent = document.getElementById('inventory-content');
+            inventoryContent.innerHTML = '';
             
             if (Object.keys(gameState.inventory).length === 0) {
                 const emptyMessage = document.createElement('p');
                 emptyMessage.textContent = '暂无物品，快去购物吧！';
-                inventorySection.appendChild(emptyMessage);
+                inventoryContent.appendChild(emptyMessage);
                 return;
             }
             
@@ -1412,10 +2203,13 @@
                 let profitColor = potentialProfit > 0 ? 'green' : (potentialProfit < 0 ? 'red' : 'black');
                 let profitSymbol = potentialProfit > 0 ? '↑' : (potentialProfit < 0 ? '↓' : '→');
                 
-                // Rarity stars
+                // Simplified rarity display for mobile
                 let rarityStars = '';
-                for (let i = 0; i < item.rarity; i++) {
+                for (let i = 0; i < Math.min(item.rarity, 3); i++) {
                     rarityStars += '⭐';
+                }
+                if (item.rarity > 3) {
+                    rarityStars += '+' + (item.rarity - 3);
                 }
                 
                 itemElement.innerHTML = `
@@ -1423,8 +2217,8 @@
                     <div class="item-details">
                         <h3>${item.name} ${rarityStars}</h3>
                         <p>数量：${item.quantity}</p>
-                        <p>购入价：${formatCurrency(purchasePrice, currencySymbol)}</p>
-                        <p>出售价：${formatCurrency(item.resalePrice, currencySymbol)}</p>
+                        <p>买入：${formatCurrency(purchasePrice, currencySymbol)}</p>
+                        <p>卖出：${formatCurrency(item.resalePrice, currencySymbol)}</p>
                         <p style="color:${profitColor}">预计${potentialProfit >= 0 ? '利润' : '亏损'}：${formatCurrency(Math.abs(potentialProfit), currencySymbol)} ${profitSymbol}</p>
                     </div>
                     <div class="item-actions">
@@ -1432,7 +2226,7 @@
                     </div>
                 `;
                 
-                inventorySection.appendChild(itemElement);
+                inventoryContent.appendChild(itemElement);
                 
                 // Add event listener for sell button
                 itemElement.querySelector('.sell-btn').addEventListener('click', () => {
@@ -1461,7 +2255,7 @@
                 gameState.currencies.silverIngot += rewards.silverIngot;
                 gameState.reputation += rewards.reputation;
                 
-                showNotification(`恭喜！你的商业等级提升到${gameState.businessLevel}级！获得奖励：${formatCurrency(rewards.goldIngot, '金')}，${formatCurrency(rewards.silverIngot, '银')}，声望+${rewards.reputation}`);
+                showAlert(`恭喜！你的商业等级提升到${gameState.businessLevel}级！获得奖励：${formatCurrency(rewards.goldIngot, '金')}，${formatCurrency(rewards.silverIngot, '银')}，声望+${rewards.reputation}`, 'success');
                 
                 // Update store with new items at higher levels
                 if (gameState.businessLevel === 3) {
@@ -1490,13 +2284,34 @@
             const mainElement = document.querySelector('main');
             mainElement.insertBefore(notification, mainElement.firstChild);
             
-            // Remove notification after 5 seconds
+            // Remove notification after 3 seconds
             setTimeout(() => {
                 notification.style.opacity = '0';
                 notification.style.transition = 'opacity 0.5s';
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.parentNode.removeChild(notification);
+                    }
+                }, 500);
+            }, 3000);
+        };
+
+        // Show alert
+        const showAlert = (message, type) => {
+            const alert = document.createElement('div');
+            alert.classList.add('alert', `alert-${type}`);
+            alert.textContent = message;
+            
+            const mainElement = document.querySelector('main');
+            mainElement.insertBefore(alert, mainElement.firstChild);
+            
+            // Remove alert after 5 seconds
+            setTimeout(() => {
+                alert.style.opacity = '0';
+                alert.style.transition = 'opacity 0.5s';
+                setTimeout(() => {
+                    if (alert.parentNode) {
+                        alert.parentNode.removeChild(alert);
                     }
                 }, 500);
             }, 5000);
@@ -1548,10 +2363,468 @@
 
         // Generate a random event
         const generateRandomEvent = () => {
-            if (Math.random() < 0.3) { // 30% chance for an event
+            if (Math.random() < 0.4) { // 40% chance for an event (increased from 30%)
                 const randomEvent = gameEvents[Math.floor(Math.random() * gameEvents.length)];
                 showEventNotification(randomEvent);
             }
+        };
+
+        // Update the mini market
+        const updateMiniMarket = () => {
+            const miniMarket = document.getElementById('mini-market');
+            miniMarket.innerHTML = '';
+            
+            // Clear previous mini market items
+            gameState.miniMarketItems = [];
+            
+            // 50% chance to have items in mini market
+            if (Math.random() < 0.5) {
+                // Pick 1-3 random rare items
+                const numItems = Math.floor(Math.random() * 3) + 1;
+                
+                for (let i = 0; i < numItems; i++) {
+                    const randomItem = rareItems[Math.floor(Math.random() * rareItems.length)];
+                    
+                    // Apply special discount (20-40% off)
+                    const discount = 0.6 + Math.random() * 0.2;
+                    const discountedPrice = Math.floor(randomItem.price * discount);
+                    
+                    // Create a copy of the item with discounted price
+                    const discountedItem = {
+                        ...randomItem,
+                        price: discountedPrice,
+                        originalPrice: randomItem.price,
+                        discountPercent: Math.floor((1 - discount) * 100)
+                    };
+                    
+                    // Add to mini market items
+                    gameState.miniMarketItems.push(discountedItem);
+                    
+                    // Create mini market item element
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('mini-market-item');
+                    
+                    // Determine currency symbol
+                    let currencySymbol = '';
+                    switch(discountedItem.currency) {
+                        case 'goldIngot': currencySymbol = '金'; break;
+                        case 'goldNote': currencySymbol = '金票'; break;
+                        case 'silverIngot': currencySymbol = '银'; break;
+                        case 'silverNote': currencySymbol = '银票'; break;
+                    }
+                    
+                    itemElement.innerHTML = `
+                        <div class="item-icon">${discountedItem.icon}</div>
+                        <div class="item-details">
+                            <h3>${discountedItem.name} ⭐${discountedItem.rarity}</h3>
+                            <p>特价: ${formatCurrency(discountedPrice, currencySymbol)} (-${discountedItem.discountPercent}%)</p>
+                        </div>
+                        <button class="mini-market-buy" data-index="${i}">购买</button>
+                    `;
+                    
+                    miniMarket.appendChild(itemElement);
+                }
+                
+                // Add event listeners for buy buttons
+                document.querySelectorAll('.mini-market-buy').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = parseInt(button.getAttribute('data-index'));
+                        const item = gameState.miniMarketItems[index];
+                        
+                        if (gameState.currencies[item.currency] >= item.price) {
+                            // Purchase item
+                            gameState.currencies[item.currency] -= item.price;
+                            
+                            // Add to inventory
+                            if (!gameState.inventory[item.id]) {
+                                gameState.inventory[item.id] = {
+                                    ...item,
+                                    quantity: 1,
+                                    purchasePrice: item.price
+                                };
+                            } else {
+                                gameState.inventory[item.id].quantity += 1;
+                                // Update average purchase price
+                                gameState.inventory[item.id].purchasePrice = Math.floor(
+                                    (gameState.inventory[item.id].purchasePrice * (gameState.inventory[item.id].quantity - 1) + item.price) / 
+                                    gameState.inventory[item.id].quantity
+                                );
+                            }
+                            
+                            showNotification(`成功以特价购买 ${item.name}！`);
+                            
+                            // Remove item from mini market
+                            button.closest('.mini-market-item').remove();
+                            gameState.miniMarketItems.splice(index, 1);
+                            
+                            // Update remaining buttons' data-index
+                            document.querySelectorAll('.mini-market-buy').forEach((btn, idx) => {
+                                btn.setAttribute('data-index', idx);
+                            });
+                            
+                            // Update displays
+                            updateCurrencyDisplay();
+                            updateInventoryDisplay();
+                            
+                            // Add experience based on rarity
+                            addExperience(item.rarity * 10);
+                            
+                            // Add purchase to statistics
+                            gameState.statistics.totalPurchases += 1;
+                        } else {
+                            const currencyName = item.currency === 'goldIngot' ? '金子' : 
+                                            item.currency === 'goldNote' ? '金票' : 
+                                            item.currency === 'silverIngot' ? '银子' : '银票';
+                            showNotification(`${currencyName}不足，无法购买！`);
+                        }
+                    });
+                });
+                
+                // Show badge to indicate new items
+                document.getElementById('mini-market-badge').style.display = 'inline-block';
+            } else {
+                // No items in mini market
+                miniMarket.innerHTML = '<p>当前没有特价商品，等待下次市场更新。</p>';
+                document.getElementById('mini-market-badge').style.display = 'none';
+            }
+        };
+
+        // Update loan system
+        const updateLoanSystem = () => {
+            const loanSystem = document.getElementById('loan-system');
+            loanSystem.innerHTML = '';
+            
+            // First display active loans
+            if (gameState.activeLoans.length > 0) {
+                const activeLoanTitle = document.createElement('h4');
+                activeLoanTitle.textContent = '当前贷款';
+                loanSystem.appendChild(activeLoanTitle);
+                
+                gameState.activeLoans.forEach((loan, index) => {
+                    const loanElement = document.createElement('div');
+                    loanElement.classList.add('loan-option', 'loan-active');
+                    
+                    // Calculate remaining amount
+                    const totalAmount = Math.floor(loan.amount * (1 + loan.interestRate));
+                    const currencySymbol = loan.currency === 'goldIngot' ? '金' : '银';
+                    
+                    loanElement.innerHTML = `
+                        <h4>${loan.name}</h4>
+                        <p>剩余还款时间: ${loan.remainingCycles}个市场周期</p>
+                        <p>需还款金额: ${formatCurrency(totalAmount, currencySymbol)}</p>
+                        <button class="repay-loan-btn" data-index="${index}">立即还款</button>
+                    `;
+                    
+                    loanSystem.appendChild(loanElement);
+                });
+                
+                // Add event listeners for repay buttons
+                document.querySelectorAll('.repay-loan-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const index = parseInt(button.getAttribute('data-index'));
+                        const loan = gameState.activeLoans[index];
+                        const totalAmount = Math.floor(loan.amount * (1 + loan.interestRate));
+                        
+                        if (gameState.currencies[loan.currency] >= totalAmount) {
+                            // Repay loan
+                            gameState.currencies[loan.currency] -= totalAmount;
+                            
+                            // Remove loan from active loans
+                            gameState.activeLoans.splice(index, 1);
+                            
+                            showNotification(`成功还清贷款！`);
+                            updateCurrencyDisplay();
+                            updateLoanSystem();
+                        } else {
+                            showNotification(`你没有足够的${loan.currency === 'goldIngot' ? '金子' : '银子'}来还款。`);
+                        }
+                    });
+                });
+            }
+            
+            // Then display available loans
+            const availableLoanTitle = document.createElement('h4');
+            availableLoanTitle.textContent = '可申请贷款';
+            loanSystem.appendChild(availableLoanTitle);
+            
+            const availableLoans = loanOptions.filter(loan => loan.minBusinessLevel <= gameState.businessLevel);
+            
+            if (availableLoans.length === 0) {
+                const noLoanMsg = document.createElement('p');
+                noLoanMsg.textContent = `当前商业等级 ${gameState.businessLevel} 暂无可用贷款。提升等级解锁更多贷款选项！`;
+                loanSystem.appendChild(noLoanMsg);
+            } else {
+                availableLoans.forEach(loan => {
+                    // Skip if player already has this type of loan
+                    if (gameState.activeLoans.some(l => l.id === loan.id)) {
+                        return;
+                    }
+                    
+                    const loanElement = document.createElement('div');
+                    loanElement.classList.add('loan-option');
+                    
+                    const currencySymbol = loan.currency === 'goldIngot' ? '金' : '银';
+                    const totalAmount = Math.floor(loan.amount * (1 + loan.interestRate));
+                    
+                    loanElement.innerHTML = `
+                        <h4>${loan.name}</h4>
+                        <p>贷款金额: ${formatCurrency(loan.amount, currencySymbol)}</p>
+                        <p>利率: ${loan.interestRate * 100}%</p>
+                        <p>期限: ${loan.durationCycles}个市场周期</p>
+                        <p>到期应还: ${formatCurrency(totalAmount, currencySymbol)}</p>
+                        <button class="take-loan-btn" data-id="${loan.id}">申请贷款</button>
+                    `;
+                    
+                    loanSystem.appendChild(loanElement);
+                });
+                
+                // Add event listeners for loan buttons
+                document.querySelectorAll('.take-loan-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const loanId = button.getAttribute('data-id');
+                        const loan = loanOptions.find(l => l.id === loanId);
+                        
+                        // Check if player already has too many loans
+                        if (gameState.activeLoans.length >= 2) {
+                            showNotification(`你已经有 ${gameState.activeLoans.length} 笔贷款了，无法申请更多。`);
+                            return;
+                        }
+                        
+                        // Create active loan
+                        const activeLoan = {
+                            ...loan,
+                            remainingCycles: loan.durationCycles
+                        };
+                        
+                        gameState.activeLoans.push(activeLoan);
+                        
+                        // Add loan amount to currency
+                        gameState.currencies[loan.currency] += loan.amount;
+                        
+                        showNotification(`成功申请贷款，获得 ${formatCurrency(loan.amount, loan.currency === 'goldIngot' ? '金' : '银')}`);
+                        updateCurrencyDisplay();
+                        updateLoanSystem();
+                    });
+                });
+            }
+        };
+
+        // Update prediction system
+        const updatePredictionSystem = () => {
+            // Populate item dropdown
+            const predictionItem = document.getElementById('prediction-item');
+            
+            // Clear current options except the first one
+            while (predictionItem.options.length > 1) {
+                predictionItem.remove(1);
+            }
+            
+            // Add all items
+            for (const category in storeItems) {
+                storeItems[category].forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item.id;
+                    option.textContent = `${item.name} ${item.icon}`;
+                    predictionItem.appendChild(option);
+                });
+            }
+            
+            // Add event listener to make prediction button
+            document.getElementById('make-prediction').addEventListener('click', () => {
+                const itemId = document.getElementById('prediction-item').value;
+                const trend = document.getElementById('prediction-trend').value;
+                const amount = parseInt(document.getElementById('prediction-amount').value) || 0;
+                
+                if (!itemId) {
+                    showNotification("请选择一个商品进行预测。");
+                    return;
+                }
+                
+                if (amount < 1000) {
+                    showNotification("投注金额至少为1两银票。");
+                    return;
+                }
+                
+                if (gameState.currencies.silverNote < amount) {
+                    showNotification("银票余额不足，无法完成投注。");
+                    return;
+                }
+                
+                // Find the item
+                let predictedItem = null;
+                for (const category in storeItems) {
+                    const found = storeItems[category].find(item => item.id === itemId);
+                    if (found) {
+                        predictedItem = found;
+                        break;
+                    }
+                }
+                
+                if (!predictedItem) {
+                    showNotification("无法找到指定商品。");
+                    return;
+                }
+                
+                // Take the bet
+                gameState.currencies.silverNote -= amount;
+                
+                // Create prediction
+                const prediction = {
+                    item: predictedItem,
+                    trend: trend,
+                    amount: amount,
+                    currentPrice: predictedItem.price,
+                    marketCycles: 3 // Check after 3 market cycles
+                };
+                
+                gameState.activePredictions.push(prediction);
+                
+                showNotification(`你预测 ${predictedItem.name} 将会${trend === 'up' ? '上涨' : '下跌'}，投注 ${formatCurrency(amount, '银票')}。结果将在3个市场周期后揭晓。`);
+                updateCurrencyDisplay();
+                
+                // Clear input
+                document.getElementById('prediction-amount').value = '';
+            });
+            
+            // Display active predictions
+            const predictionResults = document.getElementById('prediction-results');
+            predictionResults.innerHTML = '';
+            
+            if (gameState.activePredictions.length > 0) {
+                const predictionsTitle = document.createElement('h4');
+                predictionsTitle.textContent = '进行中的预测';
+                predictionResults.appendChild(predictionsTitle);
+                
+                gameState.activePredictions.forEach(prediction => {
+                    const predictionElement = document.createElement('div');
+                    predictionElement.classList.add('prediction-item');
+                    
+                    predictionElement.innerHTML = `
+                        <p>${prediction.item.name} ${prediction.item.icon} - 预测${prediction.trend === 'up' ? '上涨' : '下跌'}</p>
+                        <p>投注: ${formatCurrency(prediction.amount, '银票')}</p>
+                        <p>剩余: ${prediction.marketCycles}个市场周期</p>
+                    `;
+                    
+                    predictionResults.appendChild(predictionElement);
+                });
+            }
+        };
+
+        // Check predictions
+        const checkPredictions = () => {
+            const predictionsToBeChecked = [];
+            
+            // Reduce market cycles for all predictions and find the ones to check
+            gameState.activePredictions.forEach(prediction => {
+                prediction.marketCycles--;
+                
+                if (prediction.marketCycles <= 0) {
+                    predictionsToBeChecked.push(prediction);
+                }
+            });
+            
+            // Process predictions to be checked
+            for (const prediction of predictionsToBeChecked) {
+                // Find the current item price
+                let currentItem = null;
+                for (const category in storeItems) {
+                    const found = storeItems[category].find(item => item.id === prediction.item.id);
+                    if (found) {
+                        currentItem = found;
+                        break;
+                    }
+                }
+                
+                if (!currentItem) {
+                    showNotification(`${prediction.item.name} 无法找到，预测取消。`);
+                    continue;
+                }
+                
+                // Check if prediction was correct
+                const priceDifference = currentItem.price - prediction.currentPrice;
+                const actualTrend = priceDifference > 0 ? 'up' : (priceDifference < 0 ? 'down' : 'stable');
+                const isCorrect = (prediction.trend === 'up' && priceDifference > 0) || (prediction.trend === 'down' && priceDifference < 0);
+                
+                if (isCorrect) {
+                    // Pay out 2x bet
+                    const payout = prediction.amount * 2;
+                    gameState.currencies.silverNote += payout;
+                    
+                    showNotification(`你对 ${prediction.item.name} 的预测正确！赢得 ${formatCurrency(payout, '银票')}`);
+                    
+                    // Track statistics
+                    if (!gameState.statistics.successfulPredictions) {
+                        gameState.statistics.successfulPredictions = 1;
+                    } else {
+                        gameState.statistics.successfulPredictions++;
+                    }
+                    
+                    // Add experience
+                    addExperience(20);
+                } else {
+                    showNotification(`你对 ${prediction.item.name} 的预测错误，损失了投注金额。`);
+                }
+                
+                // Remove the prediction
+                gameState.activePredictions = gameState.activePredictions.filter(p => p !== prediction);
+            }
+            
+            updateCurrencyDisplay();
+            updatePredictionSystem();
+        };
+
+        // Setup achievements
+        const setupAchievements = () => {
+            const achievementsContainer = document.getElementById('achievements-container');
+            achievementsContainer.innerHTML = '';
+            
+            achievementsList.forEach(achievement => {
+                const isUnlocked = gameState.unlockedAchievements.includes(achievement.id);
+                
+                const achievementElement = document.createElement('div');
+                achievementElement.classList.add('achievement');
+                if (!isUnlocked) {
+                    achievementElement.classList.add('achievement-locked');
+                }
+                
+                achievementElement.innerHTML = `
+                    <div class="achievement-icon">${achievement.icon}</div>
+                    <div class="achievement-details">
+                        <h4>${achievement.name}${isUnlocked ? ' ✓' : ''}</h4>
+                        <p>${achievement.description}</p>
+                        <p><small>${isUnlocked ? '已解锁' : '未解锁'}</small></p>
+                    </div>
+                `;
+                
+                achievementsContainer.appendChild(achievementElement);
+            });
+        };
+
+        // Check achievements
+        const checkAchievements = () => {
+            achievementsList.forEach(achievement => {
+                // Skip already unlocked achievements
+                if (gameState.unlockedAchievements.includes(achievement.id)) {
+                    return;
+                }
+                
+                // Check if requirement is met
+                if (achievement.requirement()) {
+                    // Unlock achievement
+                    gameState.unlockedAchievements.push(achievement.id);
+                    
+                    // Give reward
+                    gameState.currencies.silverNote += achievement.reward;
+                    
+                    showAlert(`成就解锁：${achievement.name}！奖励 ${formatCurrency(achievement.reward, '银票')}`, 'success');
+                    
+                    // Add experience
+                    addExperience(25);
+                    
+                    // Update achievements display
+                    setupAchievements();
+                }
+            });
         };
 
         // Update market with random price fluctuations
@@ -1628,8 +2901,8 @@
             // Update all prices based on trend and volatility
             for (let category in storeItems) {
                 storeItems[category].forEach(item => {
-                    // Base fluctuation based on volatility
-                    const fluctuation = (Math.random() * 2 - 1) * item.volatility;
+                    // Base fluctuation based on volatility - more extreme now
+                    const fluctuation = (Math.random() * 2 - 1) * item.volatility * 2;
                     
                     // Add trend component
                     const trendComponent = item.trend;
@@ -1666,8 +2939,74 @@
             updateStoreDisplay();
             updateInventoryDisplay();
             
+            // Check loans
+            updateLoans();
+            
+            // Check predictions
+            checkPredictions();
+            
+            // Update mini market (occasionally)
+            if (Math.random() < 0.3) {
+                updateMiniMarket();
+            }
+            
             // Small chance for random event
             generateRandomEvent();
+        };
+
+        // Update loans
+        const updateLoans = () => {
+            // Check for any loans that need to be repaid
+            const loansToBePaid = [];
+            
+            gameState.activeLoans.forEach(loan => {
+                loan.remainingCycles--;
+                
+                if (loan.remainingCycles <= 0) {
+                    loansToBePaid.push(loan);
+                }
+            });
+            
+            // Process loans to be paid
+            for (const loan of loansToBePaid) {
+                const totalAmount = Math.floor(loan.amount * (1 + loan.interestRate));
+                
+                if (gameState.currencies[loan.currency] >= totalAmount) {
+                    // Pay back loan
+                    gameState.currencies[loan.currency] -= totalAmount;
+                    showNotification(`贷款 ${loan.name} 到期，自动偿还 ${formatCurrency(totalAmount, loan.currency === 'goldIngot' ? '金' : '银')}`);
+                } else {
+                    // Cannot pay back - penalty
+                    const available = gameState.currencies[loan.currency];
+                    gameState.currencies[loan.currency] = 0;
+                    
+                    // Calculate remaining debt
+                    const remainingDebt = totalAmount - available;
+                    
+                    // Apply penalty to reputation
+                    gameState.reputation = Math.max(0, gameState.reputation - 20);
+                    
+                    showAlert(`贷款 ${loan.name} 到期，但你没有足够的资金偿还！信誉受损，声望-20。`, 'danger');
+                    
+                    // Create a new loan with higher interest
+                    const newLoan = {
+                        ...loan,
+                        amount: remainingDebt,
+                        interestRate: loan.interestRate * 1.5,
+                        remainingCycles: 5,
+                        name: loan.name + "（逾期）"
+                    };
+                    
+                    gameState.activeLoans.push(newLoan);
+                    showNotification(`未偿还的 ${formatCurrency(remainingDebt, loan.currency === 'goldIngot' ? '金' : '银')} 已转为高利贷，利率提高到 ${(loan.interestRate * 1.5 * 100).toFixed(0)}%`);
+                }
+                
+                // Remove loan from active loans
+                gameState.activeLoans = gameState.activeLoans.filter(l => l !== loan);
+            }
+            
+            updateCurrencyDisplay();
+            updateLoanSystem();
         };
 
         // Advance game time
@@ -1681,7 +3020,7 @@
             }
             
             // Random market event
-            if (Math.random() < 0.3) { // 30% chance for a market event
+            if (Math.random() < 0.4) { // 40% chance for a market event (increased from 30%)
                 const randomEvent = marketEvents[Math.floor(Math.random() * marketEvents.length)];
                 gameState.events.push({...randomEvent}); // Clone the event
                 showNotification(`市场事件：${randomEvent.name} - ${randomEvent.description}`);
@@ -1692,6 +3031,20 @@
             
             // Update display
             updateCurrencyDisplay();
+        };
+
+        // Handle market timer
+        const updateMarketTimer = () => {
+            gameState.timerCount--;
+            document.getElementById('market-timer').textContent = `市场更新：${gameState.timerCount}s`;
+            
+            if (gameState.timerCount <= 0) {
+                // Reset timer
+                gameState.timerCount = 15; // 15 seconds per update, faster pace!
+                
+                // Advance time
+                advanceTime();
+            }
         };
 
         // Toggle section collapse
@@ -1711,14 +3064,194 @@
             }
         };
 
+        // Setup tabs
+        const setupTabs = () => {
+            // Get tab buttons and content
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // Add click event to tab buttons
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Get the tab to show
+                    const tabToShow = button.getAttribute('data-tab');
+                    
+                    // Hide all tabs and remove active class from buttons
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // Show the selected tab and mark button as active
+                    document.getElementById(tabToShow).classList.add('active');
+                    button.classList.add('active');
+                });
+            });
+        };
+
+        // Setup quick actions
+        const setupQuickActions = () => {
+            // Show/hide quick actions
+            document.getElementById('quick-action-button').addEventListener('click', () => {
+                document.getElementById('quick-actions').classList.toggle('visible');
+            });
+            
+            // Quick buy
+            document.getElementById('quick-buy').addEventListener('click', () => {
+                // Find items with positive trend
+                let potentialItems = [];
+                
+                for (let category in storeItems) {
+                    storeItems[category].forEach(item => {
+                        if (item.trend > 0.1) {
+                            potentialItems.push(item);
+                        }
+                    });
+                }
+                
+                if (potentialItems.length === 0) {
+                    showNotification("当前没有明显上涨趋势的商品。");
+                    return;
+                }
+                
+                // Sort by trend, highest first
+                potentialItems.sort((a, b) => b.trend - a.trend);
+                
+                // Try to buy the first item
+                const itemToBuy = potentialItems[0];
+                
+                if (gameState.currencies[itemToBuy.currency] >= itemToBuy.price) {
+                    buyItem(itemToBuy);
+                } else {
+                    showNotification(`没有足够的${itemToBuy.currency === 'goldIngot' ? '金子' : itemToBuy.currency === 'goldNote' ? '金票' : itemToBuy.currency === 'silverIngot' ? '银子' : '银票'}购买 ${itemToBuy.name}`);
+                }
+                
+                document.getElementById('quick-actions').classList.remove('visible');
+            });
+            
+            // Quick sell
+            document.getElementById('quick-sell').addEventListener('click', () => {
+                // Find items with negative trend
+                let soldCount = 0;
+                let totalProfit = 0;
+                
+                for (const itemId in gameState.inventory) {
+                    const item = gameState.inventory[itemId];
+                    
+                    // Find the current item in store
+                    let storeItem = null;
+                    for (let category in storeItems) {
+                        const found = storeItems[category].find(i => i.id === itemId);
+                        if (found) {
+                            storeItem = found;
+                            break;
+                        }
+                    }
+                    
+                    if (storeItem && storeItem.trend < -0.1) {
+                        // Get profit before selling
+                        const purchasePrice = item.purchasePrice || storeItem.price;
+                        const profit = storeItem.resalePrice - purchasePrice;
+                        totalProfit += profit * item.quantity;
+                        
+                        // Sell all quantity
+                        for (let i = 0; i < item.quantity; i++) {
+                            soldCount++;
+                            
+                            // Add currency from sale
+                            if (storeItem.currency === 'goldIngot') {
+                                gameState.currencies.goldIngot += storeItem.resalePrice;
+                            } else if (storeItem.currency === 'goldNote') {
+                                gameState.currencies.goldNote += storeItem.resalePrice;
+                            } else if (storeItem.currency === 'silverIngot') {
+                                gameState.currencies.silverIngot += storeItem.resalePrice;
+                            } else {
+                                gameState.currencies.silverNote += storeItem.resalePrice;
+                            }
+                            
+                            // Add to statistics
+                            gameState.statistics.totalSales += 1;
+                            if (profit > 0) {
+                                gameState.statistics.totalProfit += profit;
+                                if (profit > gameState.statistics.biggestProfit) {
+                                    gameState.statistics.biggestProfit = profit;
+                                }
+                            }
+                        }
+                        
+                        // Remove from inventory
+                        delete gameState.inventory[itemId];
+                    }
+                }
+                
+                if (soldCount > 0) {
+                    const profitMsg = totalProfit > 0 ? `，获利 ${formatCurrency(totalProfit, '银')}` : totalProfit < 0 ? `，亏损 ${formatCurrency(Math.abs(totalProfit), '银')}` : '';
+                    showNotification(`一键出售了 ${soldCount} 件下跌趋势商品${profitMsg}`);
+                    updateCurrencyDisplay();
+                    updateInventoryDisplay();
+                    addExperience(soldCount * 5);
+                } else {
+                    showNotification("没有发现下跌趋势的商品或库存为空。");
+                }
+                
+                document.getElementById('quick-actions').classList.remove('visible');
+            });
+            
+            // Quick exchange
+            document.getElementById('quick-exchange').addEventListener('click', () => {
+                // Calculate optimal exchanges
+                if (gameState.currencies.goldIngot > 20000) { // More than 20 tael gold
+                    const exchangeAmount = Math.floor(gameState.currencies.goldIngot * 0.3); // Exchange 30%
+                    gameState.currencies.goldIngot -= exchangeAmount;
+                    gameState.currencies.silverIngot += exchangeAmount * 100;
+                    showNotification(`快速兑换：${formatCurrency(exchangeAmount, '金')} → ${formatCurrency(exchangeAmount * 100, '银')}`);
+                }
+                
+                if (gameState.currencies.silverIngot > 100000) { // More than 100 tael silver
+                    const exchangeAmount = Math.floor(gameState.currencies.silverIngot * 0.2); // Exchange 20%
+                    gameState.currencies.silverIngot -= exchangeAmount;
+                    gameState.currencies.silverNote += Math.floor(exchangeAmount * 0.95); // 5% fee
+                    showNotification(`快速兑换：${formatCurrency(exchangeAmount, '银')} → ${formatCurrency(Math.floor(exchangeAmount * 0.95), '银票')}`);
+                }
+                
+                updateCurrencyDisplay();
+                setupCurrencySection();
+                document.getElementById('quick-actions').classList.remove('visible');
+            });
+            
+            // Quick egg
+            document.getElementById('quick-egg').addEventListener('click', () => {
+                if (gameState.currencies.goldIngot >= gameState.eggCost) {
+                    gameState.currencies.goldIngot -= gameState.eggCost;
+                    crackEgg(false);
+                } else if (gameState.currencies.goldNote >= gameState.eggCost) {
+                    gameState.currencies.goldNote -= gameState.eggCost;
+                    crackEgg(true);
+                } else {
+                    showNotification("金子和金票不足，无法砸金蛋。");
+                }
+                
+                document.getElementById('quick-actions').classList.remove('visible');
+            });
+        };
+
         // Initialize game
         const initGame = () => {
             updateCurrencyDisplay();
             setupCurrencySection();
             setupGoldEggSection();
             setupStoreTabs();
+            setupTabs();
             updateStoreDisplay();
             updateInventoryDisplay();
+            updateMiniMarket();
+            updateLoanSystem();
+            setupAchievements();
+            updatePredictionSystem();
+            setupQuickActions();
             
             // Initialize section collapse state
             document.querySelectorAll('.section-toggle').forEach(toggle => {
@@ -1737,11 +3270,11 @@
                 }
             });
             
-            // Start game timer - advances time every 60 seconds
-            setInterval(advanceTime, 60000);
+            // Start game timer - updates market every 15 seconds
+            setInterval(updateMarketTimer, 1000);
             
             // Welcome message
-            showNotification("欢迎来到天书小摊！请开始你的商业冒险！");
+            showAlert("欢迎来到天书小摊！请开始你的商业冒险！", 'success');
         };
 
         // Start the game when DOM is loaded
