@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫咪性格心理测试</title>
+    <style>
+        :root {
+            --red: #ff6b6b;
+            --yellow: #ffd93d;
+            --black: #4a4a4a;
+            --blue: #6b9fff;
+            --primary: var(--blue);
+            --bg-light: #f8f9fa;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .option {
+            padding: 15px;
+            background: var(--bg-light);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        #welcome, #question-container, #result {
+            display: none;
+        }
+
+        #welcome {
+            display: block;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .result-icon {
+            font-size: 40px;
+            margin-right: 15px;
+        }
+
+        .result-card {
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 20px 0;
+            background: var(--bg-light);
+            box-shadow: var(--shadow);
+        }
+
+        .result-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .cat-image {
+            display: block;
+            max-width: 200px;
+            margin: 20px auto;
+            border-radius: var(--border-radius);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="welcome">
+        <h1>猫咪性格心理测试</h1>
+        <p>欢迎参加猫咪性格心理测试！本测试通过36个问题来分析你的内在性格倾向和外在表现方式。</p>
+        <p>测试结果会用一种颜色（代表你的内在性格）和一种猫咪品种（代表你的外在表现）来呈现。</p>
+        <p>请根据你的第一反应选择最符合自己的选项，这样测试结果会更准确。</p>
+        <button class="btn" onclick="startTest()">开始测试</button>
+    </div>
+
+    <div class="container" id="question-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <h2 id="question-title">问题 1/36</h2>
+        <p id="question-text"></p>
+        <div class="options" id="options-container"></div>
+    </div>
+
+    <div class="container" id="result">
+        <h1>测试结果</h1>
+        <div class="result-card">
+            <div class="result-title" id="result-title"></div>
+            <div id="cat-image-container"></div>
+            <p id="result-description"></p>
+        </div>
+        <button class="btn" onclick="restartTest()">重新测试</button>
+    </div>
+
+    <script>
+        // 测试数据
+        const questions = [
+            {
+                text: "当你面对一个紧急情况时，你通常会：",
+                options: [
+                    { text: "迅速做出反应，立即行动", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "先分析情况，然后有条理地解决", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 2, british: 2, siamese: 1, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 1, maine: 2 } },
+                    { text: "寻求他人的帮助和建议", scores: { red: 0, yellow: 2, black: 0, blue: 2, garden: 0, british: 1, siamese: 2, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } },
+                    { text: "尝试找到一个平衡各方需求的解决方案", scores: { red: 1, yellow: 1, black: 1, blue: 3, garden: 1, british: 1, siamese: 0, sphynx: 1, abyssinian: 0, ragdoll: 2, chinchilla: 2, maine: 3 } }
+                ]
+            },
+            {
+                text: "在一个社交场合，你更可能：",
+                options: [
+                    { text: "成为对话的中心，活跃气氛", scores: { red: 2, yellow: 3, black: 0, blue: 0, garden: 0, british: 0, siamese: 3, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "与少数几个人进行深入交流", scores: { red: 0, yellow: 1, black: 2, blue: 3, garden: 1, british: 3, siamese: 0, sphynx: 1, abyssinian: 0, ragdoll: 2, chinchilla: 2, maine: 1 } },
+                    { text: "观察环境，选择性地参与交流", scores: { red: 1, yellow: 0, black: 3, blue: 1, garden: 3, british: 2, siamese: 1, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 3, maine: 0 } },
+                    { text: "确保每个人都感到舒适，协调气氛", scores: { red: 0, yellow: 2, black: 0, blue: 2, garden: 0, british: 0, siamese: 1, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 3 } }
+                ]
+            },
+            {
+                text: "当你需要做一个重要决定时，你通常：",
+                options: [
+                    { text: "根据直觉快速决定", scores: { red: 3, yellow: 2, black: 0, blue: 0, garden: 2, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "收集所有可能的信息，仔细分析", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 3, siamese: 2, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 1, maine: 2 } },
+                    { text: "考虑决定对他人的影响", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 1, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 2, maine: 2 } },
+                    { text: "权衡利弊，找到平衡点", scores: { red: 1, yellow: 1, black: 2, blue: 2, garden: 3, british: 2, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 1, maine: 3 } }
+                ]
+            },
+            {
+                text: "在工作或学习中，你更看重：",
+                options: [
+                    { text: "效率和成果", scores: { red: 3, yellow: 1, black: 2, blue: 0, garden: 2, british: 1, siamese: 1, sphynx: 0, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "创新和新想法", scores: { red: 1, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "精确和细节", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 0, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 1 } },
+                    { text: "合作和团队和谐", scores: { red: 0, yellow: 2, black: 0, blue: 3, garden: 1, british: 0, siamese: 0, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 2 } }
+                ]
+            },
+            {
+                text: "当你遇到挑战时，你的第一反应是：",
+                options: [
+                    { text: "直面挑战，迎难而上", scores: { red: 3, yellow: 1, black: 1, blue: 0, garden: 2, british: 0, siamese: 1, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "寻找创新的解决方法", scores: { red: 1, yellow: 3, black: 1, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "分析问题的根源", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 3, siamese: 1, sphynx: 0, abyssinian: 1, ragdoll: 1, chinchilla: 2, maine: 1 } },
+                    { text: "寻求支持和协助", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 0, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "你的空闲时间通常会：",
+                options: [
+                    { text: "参加体育活动或户外探险", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 0, sphynx: 1, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "与朋友聚会或参加社交活动", scores: { red: 1, yellow: 3, black: 0, blue: 1, garden: 0, british: 0, siamese: 3, sphynx: 2, abyssinian: 1, ragdoll: 1, chinchilla: 0, maine: 1 } },
+                    { text: "阅读或学习新技能", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 2, british: 2, siamese: 1, sphynx: 0, abyssinian: 2, ragdoll: 0, chinchilla: 2, maine: 0 } },
+                    { text: "放松和恢复精力", scores: { red: 0, yellow: 1, black: 1, blue: 3, garden: 1, british: 3, siamese: 0, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "在团队中，你倾向于：",
+                options: [
+                    { text: "带领团队，指导方向", scores: { red: 3, yellow: 1, black: 1, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "提供创意和新想法", scores: { red: 1, yellow: 3, black: 0, blue: 0, garden: 0, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "关注细节和确保质量", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 1 } },
+                    { text: "促进团队和谐和合作", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 2, british: 1, siamese: 1, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 2 } }
+                ]
+            },
+            {
+                text: "当计划突然改变时，你的反应是：",
+                options: [
+                    { text: "迅速调整并继续前进", scores: { red: 2, yellow: 2, black: 0, blue: 0, garden: 3, british: 0, siamese: 1, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "对新可能性感到兴奋", scores: { red: 1, yellow: 3, black: 0, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "分析变化的影响并重新规划", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 2 } },
+                    { text: "确保每个人都适应这种变化", scores: { red: 0, yellow: 1, black: 1, blue: 3, garden: 0, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "在与他人交往时，你最看重：",
+                options: [
+                    { text: "直率和诚实", scores: { red: 3, yellow: 0, black: 1, blue: 1, garden: 2, british: 1, siamese: 3, sphynx: 2, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "幽默和乐趣", scores: { red: 1, yellow: 3, black: 0, blue: 0, garden: 0, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 1, chinchilla: 0, maine: 1 } },
+                    { text: "深度和理解", scores: { red: 0, yellow: 0, black: 2, blue: 3, garden: 1, british: 2, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 2, chinchilla: 2, maine: 2 } },
+                    { text: "可靠和一致", scores: { red: 0, yellow: 1, black: 3, blue: 1, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 3 } }
+                ]
+            },
+            {
+                text: "在压力下，你通常会：",
+                options: [
+                    { text: "变得更加专注和有决心", scores: { red: 3, yellow: 0, black: 2, blue: 0, garden: 2, british: 1, siamese: 0, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "寻找释放压力的创意方式", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 1, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "制定详细计划以解决压力来源", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 1 } },
+                    { text: "寻求支持和与他人交流", scores: { red: 0, yellow: 2, black: 0, blue: 3, garden: 0, british: 0, siamese: 3, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "当与他人意见不同时，你通常：",
+                options: [
+                    { text: "坚定地捍卫你的观点", scores: { red: 3, yellow: 1, black: 1, blue: 0, garden: 1, british: 0, siamese: 3, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "尝试找到创新的折中方案", scores: { red: 1, yellow: 3, black: 0, blue: 1, garden: 2, british: 0, siamese: 1, sphynx: 3, abyssinian: 1, ragdoll: 1, chinchilla: 0, maine: 0 } },
+                    { text: "分析所有观点以找出最合理的一个", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 2, siamese: 0, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 2, maine: 2 } },
+                    { text: "寻找能满足所有人需求的解决方案", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 3 } }
+                ]
+            },
+            {
+                text: "你认为自己最大的优势是：",
+                options: [
+                    { text: "坚韧和决断力", scores: { red: 3, yellow: 0, black: 1, blue: 0, garden: 2, british: 1, siamese: 0, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "创造力和适应性", scores: { red: 1, yellow: 3, black: 0, blue: 0, garden: 1, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "逻辑思维和分析能力", scores: { red: 0, yellow: 0, black: 3, blue: 0, garden: 1, british: 2, siamese: 2, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 2, maine: 1 } },
+                    { text: "同理心和人际关系", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 2 } }
+                ]
+            },
+            {
+                text: "当你开始一个新项目时，你首先会：",
+                options: [
+                    { text: "设定目标并立即行动", scores: { red: 3, yellow: 1, black: 1, blue: 0, garden: 1, british: 0, siamese: 0, sphynx: 1, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "头脑风暴创意和可能性", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 0, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "制定详细计划和步骤", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 2, maine: 1 } },
+                    { text: "考虑项目对所有相关人员的影响", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 2, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "你如何看待规则和结构？",
+                options: [
+                    { text: "规则是指导方针，但有时需要打破", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 2, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "规则可以灵活，取决于情况", scores: { red: 1, yellow: 3, black: 0, blue: 1, garden: 3, british: 0, siamese: 2, sphynx: 2, abyssinian: 2, ragdoll: 1, chinchilla: 0, maine: 1 } },
+                    { text: "规则提供必要的秩序和一致性", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 2, chinchilla: 3, maine: 2 } },
+                    { text: "规则应该考虑每个人的福祉", scores: { red: 0, yellow: 1, black: 1, blue: 3, garden: 1, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 3 } }
+                ]
+            },
+            {
+                text: "在学习新事物时，你更喜欢：",
+                options: [
+                    { text: "通过实际操作和经验学习", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 2, british: 0, siamese: 0, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "探索不同的方法和可能性", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "系统地分析和理解概念", scores: { red: 0, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 2, maine: 2 } },
+                    { text: "通过与他人讨论和合作学习", scores: { red: 1, yellow: 1, black: 1, blue: 3, garden: 0, british: 1, siamese: 3, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "当你看到不公正的情况时，你会：",
+                options: [
+                    { text: "直接挑战并采取行动", scores: { red: 3, yellow: 0, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "寻找创新的解决方案", scores: { red: 1, yellow: 3, black: 0, blue: 1, garden: 2, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "分析情况以找出根本原因", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 2, maine: 1 } },
+                    { text: "关注受影响的人并提供支持", scores: { red: 0, yellow: 1, black: 1, blue: 3, garden: 0, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 0 } }
+                ]
+            },
+            {
+                text: "你如何看待冒险？",
+                options: [
+                    { text: "冒险是成长和成功必不可少的部分", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 0, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "冒险是发现新可能性的机会", scores: { red: 1, yellow: 3, black: 0, blue: 0, garden: 2, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "冒险应该经过计算和准备", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 1, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 2 } },
+                    { text: "冒险时应考虑对他人的影响", scores: { red: 0, yellow: 1, black: 1, blue: 3, garden: 0, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "你更喜欢的工作环境是：",
+                options: [
+                    { text: "高能量、充满挑战的环境", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 1, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "创意和灵活的环境", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 2, british: 0, siamese: 2, sphynx: 3, abyssinian: 1, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "有序和结构化的环境", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 2, chinchilla: 3, maine: 1 } },
+                    { text: "和谐和支持性的环境", scores: { red: 1, yellow: 1, black: 1, blue: 3, garden: 1, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "在处理财务时，你倾向于：",
+                options: [
+                    { text: "投资于高风险高回报的机会", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 0, british: 0, siamese: 0, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "平衡支出和储蓄，享受当下", scores: { red: 1, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 1, ragdoll: 1, chinchilla: 0, maine: 0 } },
+                    { text: "仔细规划并追踪每一笔支出", scores: { red: 0, yellow: 0, black: 3, blue: 0, garden: 2, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 1 } },
+                    { text: "考虑财务决定对长期福祉的影响", scores: { red: 0, yellow: 0, black: 1, blue: 3, garden: 1, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 2, chinchilla: 1, maine: 3 } }
+                ]
+            },
+            {
+                text: "当你接受批评时，你通常：",
+                options: [
+                    { text: "迅速做出反应并反驳", scores: { red: 3, yellow: 0, black: 0, blue: 0, garden: 0, british: 0, siamese: 3, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "寻找批评中的价值和可能性", scores: { red: 0, yellow: 3, black: 1, blue: 1, garden: 2, british: 0, siamese: 0, sphynx: 1, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "分析批评的有效性", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 0 } },
+                    { text: "考虑批评对关系的影响", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "在谈话中，你通常：",
+                options: [
+                    { text: "直接表达你的观点", scores: { red: 3, yellow: 1, black: 1, blue: 0, garden: 1, british: 0, siamese: 3, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "讲述生动的故事和经历", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 0, british: 0, siamese: 2, sphynx: 3, abyssinian: 1, ragdoll: 1, chinchilla: 1, maine: 1 } },
+                    { text: "提供详细和准确的信息", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 1 } },
+                    { text: "专注于建立联系和理解", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 2, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 0 } }
+                ]
+            },
+            {
+                text: "当你感到无聊时，你通常会：",
+                options: [
+                    { text: "寻找刺激和挑战", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 0, british: 0, siamese: 1, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "尝试创意活动或新爱好", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "找一个有组织的活动或项目", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 2, british: 2, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 2, maine: 2 } },
+                    { text: "与朋友或家人联系", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 3, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "你如何做出购买决定？",
+                options: [
+                    { text: "快速决定，相信直觉", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 0, british: 0, siamese: 0, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "选择独特或创新的产品", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 1, maine: 0 } },
+                    { text: "研究产品规格和比较选项", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 2, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 2 } },
+                    { text: "考虑产品对你和他人的价值", scores: { red: 0, yellow: 0, black: 1, blue: 3, garden: 1, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "在冲突中，你通常：",
+                options: [
+                    { text: "直面冲突，表达你的立场", scores: { red: 3, yellow: 0, black: 1, blue: 0, garden: 1, british: 0, siamese: 3, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "用幽默和创意缓解紧张局势", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 0, british: 0, siamese: 1, sphynx: 3, abyssinian: 1, ragdoll: 1, chinchilla: 1, maine: 0 } },
+                    { text: "分析冲突以找出解决方案", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 2, british: 2, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 1 } },
+                    { text: "寻求和解和相互理解", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "你如何应对失败？",
+                options: [
+                    { text: "迅速重新振作并再次尝试", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 3, british: 0, siamese: 0, sphynx: 1, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "寻找新的方法和视角", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "分析失败原因以避免再次发生", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 0, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 1 } },
+                    { text: "寻求支持和鼓励", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "在做决定时，你更看重：",
+                options: [
+                    { text: "果断和即时结果", scores: { red: 3, yellow: 0, black: 1, blue: 0, garden: 2, british: 0, siamese: 0, sphynx: 1, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "创新和可能性", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "逻辑和效率", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 0, british: 3, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 1 } },
+                    { text: "价值观和和谐", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 1, british: 0, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "你更喜欢的领导风格是：",
+                options: [
+                    { text: "直接和果断", scores: { red: 3, yellow: 0, black: 1, blue: 0, garden: 1, british: 0, siamese: 1, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "鼓舞人心和创新", scores: { red: 1, yellow: 3, black: 0, blue: 0, garden: 0, british: 0, siamese: 2, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "有系统和有条理", scores: { red: 0, yellow: 0, black: 3, blue: 0, garden: 2, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 0 } },
+                    { text: "支持和协作", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 1, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 0 } }
+                ]
+            },
+            {
+                text: "当你需要完成一项任务时，你通常：",
+                options: [
+                    { text: "快速进入并立即开始行动", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 0, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "寻找完成任务的创新方法", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 2, british: 0, siamese: 1, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "制定详细计划并按顺序执行", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 2 } },
+                    { text: "考虑任务如何影响相关人员", scores: { red: 0, yellow: 0, black: 1, blue: 3, garden: 1, british: 0, siamese: 2, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "你更倾向于哪种类型的书籍或电影？",
+                options: [
+                    { text: "动作冒险或惊悚", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 0, british: 0, siamese: 0, sphynx: 1, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "奇幻或喜剧", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 3, sphynx: 3, abyssinian: 1, ragdoll: 1, chinchilla: 0, maine: 0 } },
+                    { text: "纪录片或历史", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 3, british: 2, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 1 } },
+                    { text: "戏剧或人物驱动的故事", scores: { red: 1, yellow: 0, black: 1, blue: 3, garden: 0, british: 1, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 1 } }
+                ]
+            },
+            {
+                text: "你如何看待情绪表达？",
+                options: [
+                    { text: "直接表达强烈的情绪", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 0, british: 0, siamese: 3, sphynx: 2, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "用创意和幽默表达情绪", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 1, british: 0, siamese: 1, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "理性分析情绪后再表达", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 2, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 2 } },
+                    { text: "关注他人的情绪需求", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 0, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "你在朋友中的角色通常是：",
+                options: [
+                    { text: "领导者或组织者", scores: { red: 3, yellow: 1, black: 1, blue: 0, garden: 0, british: 0, siamese: 1, sphynx: 0, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "活跃气氛的人", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 0, british: 0, siamese: 3, sphynx: 3, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "问题解决者", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 3, british: 2, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 1 } },
+                    { text: "倾听者和调解者", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 0 } }
+                ]
+            },
+            {
+                text: "你如何应对变化？",
+                options: [
+                    { text: "迅速适应并迎接挑战", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 3, british: 0, siamese: 0, sphynx: 1, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "对新可能性感到兴奋", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "谨慎评估变化的影响", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 1 } },
+                    { text: "关注变化对他人的影响", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "在团队项目中你最有可能：",
+                options: [
+                    { text: "确保项目按时完成", scores: { red: 3, yellow: 0, black: 2, blue: 0, garden: 1, british: 0, siamese: 0, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "提供创意和解决方案", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 2, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "关注细节和质量", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 1 } },
+                    { text: "确保团队和谐合作", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 0, siamese: 2, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 0 } }
+                ]
+            },
+            {
+                text: "你如何处理压力？",
+                options: [
+                    { text: "通过体育活动或身体活动释放压力", scores: { red: 3, yellow: 0, black: 0, blue: 0, garden: 1, british: 0, siamese: 0, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "通过创意活动或社交放松", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 0, british: 0, siamese: 3, sphynx: 1, abyssinian: 0, ragdoll: 1, chinchilla: 0, maine: 0 } },
+                    { text: "制定计划和解决问题", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 3, british: 2, siamese: 0, sphynx: 0, abyssinian: 1, ragdoll: 0, chinchilla: 2, maine: 2 } },
+                    { text: "寻求情感支持和与他人交流", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 1, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 0 } }
+                ]
+            },
+            {
+                text: "你更喜欢的假期类型是：",
+                options: [
+                    { text: "冒险和刺激的活动", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 0, british: 0, siamese: 0, sphynx: 2, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "探索新地方和文化", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 2, british: 0, siamese: 2, sphynx: 1, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "有计划的行程和观光", scores: { red: 0, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 0 } },
+                    { text: "放松和恢复精力", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 2 } }
+                ]
+            },
+            {
+                text: "在面对道德困境时，你会：",
+                options: [
+                    { text: "基于直觉和原则迅速做出决定", scores: { red: 3, yellow: 0, black: 0, blue: 1, garden: 0, british: 0, siamese: 2, sphynx: 1, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 3 } },
+                    { text: "寻找创新的解决方案", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 3, british: 0, siamese: 0, sphynx: 3, abyssinian: 1, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "分析所有选项的后果", scores: { red: 0, yellow: 0, black: 3, blue: 1, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 2, maine: 1 } },
+                    { text: "考虑决定对所有相关人员的影响", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 1, maine: 0 } }
+                ]
+            },
+            {
+                text: "你如何看待规则？",
+                options: [
+                    { text: "规则有时需要被打破以取得进展", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "规则应该灵活以适应不同情况", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 3, british: 0, siamese: 2, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "规则提供必要的结构和秩序", scores: { red: 0, yellow: 0, black: 3, blue: 0, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 1, chinchilla: 3, maine: 2 } },
+                    { text: "规则应该促进公平和和谐", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 0, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            },
+            {
+                text: "在面对不确定性时，你通常：",
+                options: [
+                    { text: "直接面对并采取行动", scores: { red: 3, yellow: 0, black: 0, blue: 0, garden: 2, british: 0, siamese: 1, sphynx: 1, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 2 } },
+                    { text: "对可能性持开放态度", scores: { red: 0, yellow: 3, black: 0, blue: 1, garden: 1, british: 0, siamese: 2, sphynx: 3, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "收集更多信息以减少不确定性", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 1, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 1 } },
+                    { text: "寻求支持和建议", scores: { red: 0, yellow: 1, black: 0, blue: 3, garden: 0, british: 0, siamese: 1, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 0 } }
+                ]
+            },
+            {
+                text: "当需要做出重大决定时，你更信任：",
+                options: [
+                    { text: "你的直觉和经验", scores: { red: 3, yellow: 1, black: 0, blue: 0, garden: 1, british: 0, siamese: 1, sphynx: 3, abyssinian: 3, ragdoll: 0, chinchilla: 0, maine: 1 } },
+                    { text: "你的创造力和适应能力", scores: { red: 0, yellow: 3, black: 0, blue: 0, garden: 2, british: 0, siamese: 2, sphynx: 2, abyssinian: 2, ragdoll: 0, chinchilla: 0, maine: 0 } },
+                    { text: "事实和数据", scores: { red: 1, yellow: 0, black: 3, blue: 0, garden: 0, british: 3, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 0, chinchilla: 3, maine: 2 } },
+                    { text: "你的价值观和他人的建议", scores: { red: 0, yellow: 0, black: 0, blue: 3, garden: 0, british: 0, siamese: 0, sphynx: 0, abyssinian: 0, ragdoll: 3, chinchilla: 0, maine: 1 } }
+                ]
+            }
+        ];
+
+        const colorDescriptions = {
+            red: "红色性格代表热情、活力和决断。你是一个行动导向的人，喜欢直接面对挑战，不惧怕冒险。你有强烈的目标感，喜欢快速做出决定并立即行动。你的领导能力强，在压力下表现出色，但有时可能显得过于急躁或固执。你珍视效率、成果和诚实，对自己和他人都有高标准。",
+            yellow: "黄色性格代表乐观、创造力和社交能力。你充满活力，善于交际，喜欢探索新想法和可能性。你适应性强，能在各种情况下找到创新的解决方案。你的幽默感和讲故事能力使你成为社交场合的焦点。你珍视自由、灵活性和乐趣，但有时可能显得不够专注或缺乏条理。",
+            black: "黑色性格代表分析、条理和精确。你是一个思考型的人，喜欢深入分析问题并找出最合理的解决方案。你注重细节，有条理，喜欢按计划行事。你的逻辑思维和分析能力使你擅长解决复杂问题。你珍视准确性、效率和系统性，但有时可能显得过于谨慎或过分关注细节。",
+            blue: "蓝色性格代表和谐、同理心和关怀。你是一个以人为本的人，重视关系和他人的感受。你擅长倾听，理解他人的需求，并寻找能让所有人满意的解决方案。你喜欢合作而非竞争，重视团队和谐。你珍视真诚、和平和深度连接，但有时可能过于顾虑他人感受或避免必要的冲突。"
+        };
+
+        const catDescriptions = {
+            garden: "中华田园猫展现出你适应力强、独立自主的一面。就像这种自古以来在各种环境中生存繁衍的猫咪，你也能够在不同情况下灵活应对。你现实、务实，有着与生俱来的生存智慧，无需过多依赖他人。你珍视自由和自主，在任何环境下都能找到自己的位置。你不拘小节，但有着敏锐的洞察力，能够迅速适应变化并从困境中找到出路。",
+            british: "英国短毛猫展现出你沉稳、可靠的一面。如同这种安静优雅的猫咪，你在外表现出冷静、稳重的特质。你是一个值得信赖的人，言出必行，做事有条不紊。你喜欢规律和秩序，不轻易表露情感，但对亲近的人非常忠诚。你珍视传统和稳定，做事情有自己的步调，不会被外界轻易影响。你的处事风格可能显得保守，但这正是你可靠的体现。",
+            siamese: "暹罗猫展现出你外向、表达能力强的一面。如同这种美丽而声音独特的猫咪，你善于表达自己的想法和感受，不吝啬与他人分享。你聪明机智，有着强烈的好奇心，对周围的一切都充满兴趣。你喜欢成为关注的焦点，在社交场合中表现活跃。你的性格可能有些固执，但你的魅力和表达能力常常使你成为他人喜爱的对象。你重视交流和联系，珍视与他人的互动。",
+            sphynx: "斯芬克斯猫展现出你独特、不拘一格的一面。如同这种无毛却魅力十足的猫咪，你不害怕展示真实的自己，无论是否符合常规。你有着强烈的个性，不随波逐流，敢于打破常规。你热情开放，喜欢亲近他人，但同时保持自己的独立性。你的好奇心和冒险精神使你总是愿意尝试新事物，你不害怕与众不同，反而视之为优势。",
+            abyssinian: "阿比西尼亚猫展现出你活跃、好奇的一面。如同这种优雅而充满活力的猫咪，你充满探索精神，总是在寻找新的挑战和冒险。你聪明敏捷，反应快速，喜欢保持忙碌。你不喜欢单调和重复，而是追求变化和刺激。你对生活充满热情，总是充满能量。你珍视自由和独立，喜欢按自己的方式行动，但也能与他人建立良好的关系。",
+            ragdoll: "布偶猫展现出你温和、随和的一面。如同这种以温顺著称的猫咪，你通常表现得平和、包容。你喜欢与他人和平相处，避免冲突和争执。你有很强的适应性，能够接受不同的环境和人。你重视关系和连接，对朋友和家人非常忠诚。你的温和并不意味着懦弱，而是一种内在的力量，能够在不同情况下保持平衡。你珍视和谐与平静，是人们愿意依靠的可靠伙伴。",
+            chinchilla: "金吉拉展现出你精致、优雅的一面。如同这种美丽而高贵的猫咪，你注重细节和品质，追求生活中的精致与美。你有着良好的品味，知道什么是最好的，不轻易妥协于次品。你保持一定的距离感，不会轻易与人亲近，但一旦建立信任，就会展现出温暖的一面。你喜欢安静和有序的环境，避免喧嚣和混乱。你珍视美和和谐，追求生活中的优雅与平衡。",
+            maine: "缅因猫展现出你大方、友好的一面。如同这种体型庞大却性格温和的猫咪，你有着开放的胸怀和包容的心态。你自信而不自负，强大而不咄咄逼人。你喜欢照顾他人，有着天然的保护欲。你坚定而可靠，在困难时期能够给予他人支持和力量。你不惧怕挑战，但也不莽撞行事。你珍视友谊和家庭，是一个值得信赖的伙伴和支持者。"
+        };
+
+        const combinedDescriptions = {
+            "red-garden": "作为红色中华田园猫，你内心充满激情和活力，外在表现出极强的适应力和独立性。你行动迅速，直面挑战，不惧怕困难。你有很强的生存能力，能在各种环境中找到自己的位置。你的行动力和适应力使你成为一个随时准备应对任何情况的人。你重视自由和效率，不喜欢被约束或拖延。你可能显得有些独来独往，但这正是你强大独立的表现。",
+            "red-british": "作为红色英国短毛猫，你内心充满热情和决断力，但外在表现得沉稳可靠。你有着强烈的目标感和行动力，但会以一种有条理、稳定的方式展现出来。你不轻易表露情感，但内心对自己的目标和原则非常坚定。你是一个言出必行的人，一旦承诺就会全力以赴。你的固执有时可能被误解为冷漠，但实际上是你坚持原则的表现。",
+            "red-siamese": "作为红色暹罗猫，你既热情又善于表达。你充满活力，直率坦诚，不害怕表达自己的观点和感受。你行动迅速，决断力强，同时也很注重与他人的交流和互动。你可能有些固执己见，坚持自己的立场，但同时也愿意倾听和分享。你在社交场合中活跃而引人注目，常常成为领导者或意见领袖。你的热情和表达能力使你在各种情况下都能够脱颖而出。",
+            "red-sphynx": "作为红色斯芬克斯猫，你内心充满激情和决断力，外在表现出独特和不拘一格。你勇于挑战常规，追求自己的目标，不在乎他人的看法。你直接而坦率，不喜欢拐弯抹角。你的行动力和独特性使你成为一个引人注目的人物。你热爱冒险和挑战，总是愿意尝试新事物。你可能显得有些固执或冲动，但这正是你真实而热情的体现。",
+            "red-abyssinian": "作为红色阿比西尼亚猫，你充满活力和冒险精神。你行动迅速，决断力强，总是充满能量。你喜欢挑战和刺激，不断寻找新的冒险。你的热情和好奇心使你不断探索和学习。你直接而坦率，不害怕表达自己的观点。你可能有时显得过于冲动或急躁，但这也是你生机勃勃的表现。你珍视自由和独立，喜欢按自己的方式行事，但也能与他人建立良好的关系。",
+            "red-ragdoll": "作为红色布偶猫，你内心充满热情和决断力，但外在表现得温和随和。这种组合使你成为一个有着强烈内在动力但不咄咄逼人的人。你知道什么时候应该坚定立场，什么时候应该妥协退让。你有领导能力，但更倾向于以和平的方式引导他人。你重视和谐与效率，能够在保持良好关系的同时达成目标。你的热情和温和使你成为一个受欢迎的领导者和伙伴。",
+            "red-chinchilla": "作为红色金吉拉，你内心充满热情和决断力，外在表现出精致和优雅。你有着明确的目标和高标准，追求最好的结果。你行动迅速但不莽撞，注重质量和细节。你可能给人一种高冷的印象，但内心其实充满激情。你重视效率和品质，不会为了速度而牺牲质量。你的追求完美有时可能显得过于苛刻，但这正是你追求卓越的表现。",
+            "red-maine": "作为红色缅因猫，你热情而坚定，外在表现出大方和友好。你有着强烈的目标感和领导能力，能够激励和带领他人。你直面挑战，不畏困难，但同时也很照顾他人的感受和需求。你自信而不自负，强大而不咄咄逼人。你重视效率和团队合作，能够在追求目标的同时维护团队的凝聚力。你的热情和包容使你成为一个有效而受欢迎的领导者。",
+            "yellow-garden": "作为黄色中华田园猫，你内心充满乐观和创造力，外在表现出适应力强和独立。你善于在各种环境中找到乐趣和机会，不拘泥于常规。你灵活多变，善于应对变化和挑战。你喜欢探索和尝试新事物，但也有着实用的一面。你珍视自由和创新，不喜欢被规则和传统限制。你的乐观和适应力使你在任何情况下都能保持积极的态度。",
+            "yellow-british": "作为黄色英国短毛猫，你内心充满乐观和创造力，外在表现得沉稳可靠。这种有趣的组合使你成为一个有创意但不轻浮的人。你喜欢探索新想法，但会以一种有条理、稳定的方式实施。你善于平衡创新和传统，不会为了创新而完全抛弃既定的规则和方法。你重视可靠性和创造性，能够在保持稳定的同时引入新的元素和想法。",
+            "yellow-siamese": "作为黄色暹罗猫，你乐观开朗，充满创造力，同时非常善于表达。你喜欢分享想法和感受，常常成为社交场合的焦点。你聪明机智，反应快速，能够迅速适应新环境和情况。你的幽默感和讲故事能力使你成为一个受欢迎的伙伴。你可能有时显得过于健谈或喧宾夺主，但这也是你活力四射的表现。你珍视自由和交流，喜欢与他人分享你的创意和热情。",
+            "yellow-sphynx": "作为黄色斯芬克斯猫，你充满创意和活力，不拘一格。你不怕与众不同，喜欢打破常规，探索新的可能性。你开放而热情，喜欢尝试新事物和新想法。你的创造力和独特性使你在任何环境中都能脱颖而出。你可能有时显得过于前卫或不按常理出牌，但这正是你创新和个性的体现。你珍视自由和表达，不喜欢被传统和规则所束缚。",
+            "yellow-abyssinian": "作为黄色阿比西尼亚猫，你充满活力和创造力，好奇心强。你总是在寻找新的体验和冒险，不断探索周围的世界。你聪明敏捷，反应快速，能够迅速适应新情况。你不喜欢重复和单调，而是追求变化和刺激。你的创意和活力使你成为一个充满魅力的人。你珍视自由和探索，喜欢按自己的方式尝试新事物。",
+            "yellow-ragdoll": "作为黄色布偶猫，你内心充满乐观和创造力，外在表现得温和随和。你喜欢探索新想法，但同时也很关注他人的感受和需求。你善于在创新和和谐之间找到平衡，能够以一种不引起冲突的方式引入变化。你适应性强，能够接受不同的观点和方法。你珍视关系和创新，喜欢在一个支持和鼓励的环境中分享你的想法。",
+            "yellow-chinchilla": "作为黄色金吉拉，你内心充满乐观和创造力，外在表现出精致和优雅。你有着独特的品味和审美观，善于发现和欣赏美的事物。你喜欢探索新想法，但会以一种精致和有品位的方式呈现。你可能给人一种高雅的印象，但内心其实充满活力和创意。你重视品质和美感，追求生活中的精致和乐趣。你的创造力和品味使你在艺术和设计领域表现出色。",
+            "yellow-maine": "作为黄色缅因猫，你乐观开朗，充满创造力，同时大方友好。你喜欢与他人分享你的想法和热情，常常成为团队的灵魂人物。你有着开放的胸怀和包容的心态，能够接受不同的观点和想法。你善于激励他人，创造积极的氛围。你重视友谊和创新，喜欢在一个鼓励和支持的环境中工作和生活。你的乐观和友好使你成为一个受欢迎的伙伴和领导者。",
+            "black-garden": "作为黑色中华田园猫，你内心注重分析和条理，外在表现出适应力强和独立。你有着实用的智慧和解决问题的能力，能够在各种环境中找到最有效的方法。你注重细节，但不拘泥于完美，知道如何在不同情况下灵活应变。你独立自主，不需要太多的指导或支持。你重视效率和实用性，擅长找出最简单有效的解决方案。",
+            "black-british": "作为黑色英国短毛猫，你内心注重分析和条理，外在表现得沉稳可靠。你是一个思考型的人，喜欢深入分析问题并找出最合理的解决方案。你注重细节，有条理，喜欢按计划行事。你不轻易表露情感，给人一种冷静、稳重的印象。你重视效率和准确性，不喜欢草率或马虎。你的逻辑思维和可靠性使你成为一个值得信赖的伙伴和顾问。",
+            "black-siamese": "作为黑色暹罗猫，你内心注重分析和条理，外在表现得外向和表达能力强。这种有趣的组合使你成为一个能够清晰表达复杂想法的人。你善于分析和解释，能够帮助他人理解复杂的概念。你注重事实和逻辑，但也很注重与他人的交流和互动。你可能有时显得过于直接或批判，但这也是你追求清晰和准确的表现。你重视知识和交流，喜欢分享你的见解和发现。",
+            "black-sphynx": "作为黑色斯芬克斯猫，你内心注重分析和条理，外在表现出独特和不拘一格。你有着独特的思维方式，能够从不同的角度看待问题。你不受传统思维的限制，但同时也很注重逻辑和事实。你可能给人一种特立独行的印象，但你的想法和观点通常有着坚实的逻辑基础。你重视真实和准确，不喜欢表面或肤浅。你的分析能力和独特性使你能够提出创新但实用的解决方案。",
+            "black-abyssinian": "作为黑色阿比西尼亚猫，你内心注重分析和条理，外在表现出活跃和好奇。你有着强烈的求知欲和探索精神，喜欢深入研究和了解各种主题。你思维敏捷，反应快速，能够迅速处理和分析信息。你注重事实和逻辑，但也很乐于尝试新事物和新方法。你重视知识和效率，喜欢不断学习和提高。你的分析能力和好奇心使你成为一个终身学习者和问题解决者。",
+            "black-ragdoll": "作为黑色布偶猫，你内心注重分析和条理，外在表现得温和随和。你有着清晰的思维和判断力，但不会强硬地表达自己的观点。你善于倾听，考虑不同的视角，寻找能够满足所有人需求的解决方案。你注重事实和逻辑，但也很关注人际关系和和谐。你重视准确性和和平，能够在保持理性的同时顾及他人的感受。",
+            "black-chinchilla": "作为黑色金吉拉，你内心注重分析和条理，外在表现出精致和优雅。你有着严谨的思维和高标准，追求完美和精确。你注重细节，善于发现和解决问题。你可能给人一种挑剔或高冷的印象，但这源于你对质量的执着追求。你重视结构和秩序，喜欢在一个有序和精致的环境中工作和生活。你的分析能力和品味使你能够创造出既实用又优雅的解决方案。",
+            "black-maine": "作为黑色缅因猫，你内心注重分析和条理，外在表现出大方和友好。你有着清晰的思维和判断力，能够在保持专业和效率的同时，关注团队和谐和人际关系。你善于组织和计划，确保每个项目都有条不紊地进行。你重视准确性和合作，能够在追求高标准的同时，照顾到团队成员的需求和感受。你的分析能力和包容性使你成为一个有效而受欢迎的团队领导者。",
+            "blue-garden": "作为蓝色中华田园猫，你内心重视和谐和关怀，外在表现出适应力强和独立。你有着强烈的同理心，关注他人的感受和需求，但同时也能够独立自主，适应不同的环境和情况。你善于在关怀他人和保持自我之间找到平衡。你不需要太多的认可或支持，但总是愿意为他人提供帮助。你重视真诚和适应性，能够在不同的环境中建立和维护健康的关系。",
+            "blue-british": "作为蓝色英国短毛猫，你内心重视和谐和关怀，外在表现得沉稳可靠。你有着深厚的同理心，关注他人的感受和需求，但不会过度表达或干涉。你给人一种安静、稳定的支持感，是他人可以依赖的坚实后盾。你注重关系和可靠性，在维护和谐的同时保持一定的边界和空间。你的温和和可靠使你成为一个值得信赖的朋友和伙伴。",
+            "blue-siamese": "作为蓝色暹罗猫，你内心重视和谐和关怀，外在表现得外向和表达能力强。你善于表达关心和支持，能够通过言语和行动让他人感到被理解和被重视。你喜欢与人交流和分享，建立深入而有意义的连接。你的同理心和沟通能力使你成为一个出色的倾听者和支持者。你可能有时显得过于情绪化或干涉，但这源于你对他人真诚的关心。你重视关系和连接，总是努力创造一个和谐和支持的环境。",
+            "blue-sphynx": "作为蓝色斯芬克斯猫，你内心重视和谐和关怀，外在表现出独特和不拘一格。你有着独特的方式表达关心和支持，不受传统或常规的限制。你开放而真诚，愿意接受和欣赏不同的人和观点。你的同理心和独特性使你能够以创新的方式帮助他人，解决问题。你可能给人一种特立独行的印象，但你的行动总是出于对他人的关心和为他人着想。你重视真实和连接，鼓励他人也展现真实的自己。",
+            "blue-abyssinian": "作为蓝色阿比西尼亚猫，你内心重视和谐和关怀，外在表现出活跃和好奇。你有着强烈的同理心和活力，总是积极地寻找方法帮助他人。你对人和事物充满好奇，愿意了解不同的观点和经历。你的同理心和活力使你成为一个积极而有支持性的伙伴。你可能有时显得过于热心或干涉，但这源于你真诚的关心和帮助他人的愿望。你重视连接和探索，喜欢在帮助他人的同时不断学习和成长。",
+            "blue-ragdoll": "作为蓝色布偶猫，你内心重视和谐和关怀，外在表现得温和随和。你有着深厚的同理心和包容性，关注他人的感受和需求。你善于倾听和支持，为他人创造一个安全和舒适的环境。你不喜欢冲突和争执，总是寻找和平和和谐的解决方案。你的温和和关怀使你成为一个受欢迎的朋友和支持者。你重视关系和和谐，总是把他人的福祉放在首位。",
+            "blue-chinchilla": "作为蓝色金吉拉，你内心重视和谐和关怀，外在表现出精致和优雅。你有着深厚的同理心，以一种优雅和有品位的方式表达关心和支持。你关注他人的感受和需求，但保持一定的优雅和距离感。你的同理心和品味使你能够创造一个既美丽又和谐的环境。你可能给人一种高雅或难以接近的印象，但一旦建立信任，就会展现出温暖和关怀的一面。你重视美和和谐，追求生活中的平衡和优雅。",
+            "blue-maine": "作为蓝色缅因猫，你内心重视和谐和关怀，外在表现出大方和友好。你有着开放的胸怀和深厚的同理心，关注团队和社区的福祉。你善于创造一个包容和支持的环境，让每个人都感到被重视和被接纳。你的同理心和友好使你成为一个受欢迎的领导者和团队成员。你重视关系和合作，总是努力确保每个人都能够贡献和成长。你的强大不在于控制他人，而在于赋能和支持他人。"
+        };
+
+        // 当前问题索引
+        let currentQuestionIndex = 0;
+        // 分数统计
+        let scores = {
+            red: 0,
+            yellow: 0,
+            black: 0,
+            blue: 0,
+            garden: 0,
+            british: 0,
+            siamese: 0,
+            sphynx: 0,
+            abyssinian: 0,
+            ragdoll: 0,
+            chinchilla: 0,
+            maine: 0
+        };
+
+        // 开始测试
+        function startTest() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('question-container').style.display = 'block';
+            showQuestion(currentQuestionIndex);
+        }
+
+        // 显示问题
+        function showQuestion(index) {
+            const question = questions[index];
+            document.getElementById('question-title').innerText = `问题 ${index + 1}/36`;
+            document.getElementById('question-text').innerText = question.text;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, optionIndex) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.innerText = option.text;
+                optionElement.onclick = () => selectOption(index, optionIndex);
+                optionsContainer.appendChild(optionElement);
+            });
+
+            // 更新进度条
+            const progress = document.getElementById('progress');
+            progress.style.width = `${((index + 1) / questions.length) * 100}%`;
+        }
+
+        // 选择选项
+        function selectOption(questionIndex, optionIndex) {
+            const option = questions[questionIndex].options[optionIndex];
+            
+            // 更新分数
+            Object.keys(option.scores).forEach(key => {
+                scores[key] += option.scores[key];
+            });
+            
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < questions.length) {
+                showQuestion(currentQuestionIndex);
+            } else {
+                showResult();
+            }
+        }
+
+        // 显示结果
+        function showResult() {
+            document.getElementById('question-container').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+            
+            // 找出得分最高的颜色和猫品种
+            let maxColorScore = 0;
+            let maxColor = '';
+            let maxCatScore = 0;
+            let maxCat = '';
+            
+            Object.keys(scores).forEach(key => {
+                if (key === 'red' || key === 'yellow' || key === 'black' || key === 'blue') {
+                    if (scores[key] > maxColorScore) {
+                        maxColorScore = scores[key];
+                        maxColor = key;
+                    }
+                } else {
+                    if (scores[key] > maxCatScore) {
+                        maxCatScore = scores[key];
+                        maxCat = key;
+                    }
+                }
+            });
+            
+            // 设置颜色主题
+            document.documentElement.style.setProperty('--primary', `var(--${maxColor})`);
+            
+            // 显示结果标题和描述
+            const resultTitle = document.getElementById('result-title');
+            resultTitle.innerText = `你是${maxColor === 'red' ? '红色' : maxColor === 'yellow' ? '黄色' : maxColor === 'black' ? '黑色' : '蓝色'}${maxCat === 'garden' ? '中华田园猫' : maxCat === 'british' ? '英国短毛猫' : maxCat === 'siamese' ? '暹罗猫' : maxCat === 'sphynx' ? '斯芬克斯猫' : maxCat === 'abyssinian' ? '阿比西尼亚猫' : maxCat === 'ragdoll' ? '布偶猫' : maxCat === 'chinchilla' ? '金吉拉' : '缅因猫'}`;
+            
+            // 添加猫咪图片
+            const catImageContainer = document.getElementById('cat-image-container');
+            const catImg = document.createElement('img');
+            catImg.className = 'cat-image';
+            catImg.alt = resultTitle.innerText;
+            
+            // 这里使用占位图，实际应用中可替换为真实猫咪图片
+            catImg.src = `/api/placeholder/300/200`;
+            
+            catImageContainer.appendChild(catImg);
+            
+            // 显示结果描述
+            const resultDescription = document.getElementById('result-description');
+            const colorDescription = colorDescriptions[maxColor];
+            const catDescription = catDescriptions[maxCat];
+            const combinedDescription = combinedDescriptions[`${maxColor}-${maxCat}`];
+            
+            resultDescription.innerHTML = `
+                <p><strong>内在性格（${maxColor === 'red' ? '红色' : maxColor === 'yellow' ? '黄色' : maxColor === 'black' ? '黑色' : '蓝色'}）：</strong>${colorDescription}</p>
+                <p><strong>外在表现（${maxCat === 'garden' ? '中华田园猫' : maxCat === 'british' ? '英国短毛猫' : maxCat === 'siamese' ? '暹罗猫' : maxCat === 'sphynx' ? '斯芬克斯猫' : maxCat === 'abyssinian' ? '阿比西尼亚猫' : maxCat === 'ragdoll' ? '布偶猫' : maxCat === 'chinchilla' ? '金吉拉' : '缅因猫'}）：</strong>${catDescription}</p>
+                <p><strong>综合解读：</strong>${combinedDescription}</p>
+            `;
+        }
+
+        // 重新测试
+        function restartTest() {
+            // 重置分数
+            Object.keys(scores).forEach(key => {
+                scores[key] = 0;
+            });
+            
+            // 重置当前问题索引
+            currentQuestionIndex = 0;
+            
+            // 重置颜色主题
+            document.documentElement.style.setProperty('--primary', 'var(--blue)');
+            
+            // 隐藏结果，显示欢迎页
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('cat-image-container').innerHTML = '';
+            document.getElementById('welcome').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
